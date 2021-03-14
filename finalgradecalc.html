@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<a href="index.html">Back to Home</a>
+<script type="text/javascript">
+var number = 123;
+var string = "abcd";
+
+function docWrite(variable) {
+    document.write(variable);
+}
+
+function finalCalc() {
+	num1 = document.getElementById("yourgrade").value;
+	num2 = document.getElementById("desgrade").value;
+	num3 = document.getElementById("finalgrade").value;
+	if ((num1 <= 100) && (num2 <= 100) && (num3 <= 100)) {
+	num3 = num3 / 100;
+	minus = 1 - num3;
+	mult = minus * num1;
+	minus2 = num2 - mult;
+	document.getElementById("result").innerHTML = minus2 / num3; }
+	
+	else {
+	document.getElementById("result").innerHTML = "Please make sure all values range from 0-100";
+	}
+}
+</script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrapper">
+
+	<h1>Final Grade Calculator</h1>
+
+	<div class="currgrade">Insert your current grade</div>
+	<input id="yourgrade" type="number" min="0" max="100" oninput="this.value = Math.abs(this.value)"/>
+	
+	<div class="desiredgrade">Insert the grade you want in the class</div>
+	<input id="desgrade" type="number" min="0" max="100" oninput="this.value = Math.abs(this.value)"/>
+
+	<div class="finalpercent">How much percent is your final grade worth?</div>
+	<input id="finalgrade" type="number" min="0" max="100" oninput="this.value = Math.abs(this.value)"/>
+	<br>
+
+	<input id="submitbutton" type="button" value="Calculate final" onClick="finalCalc()"/>
+
+	<p>The grade you need is on the final is : <br>
+	<span id = "result"></span>
+	</p>
+</div>
+</body>
+</html>
