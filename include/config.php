@@ -1,10 +1,8 @@
 <?php
-//Database Connection
-$host = "localhost";
-$username = "admin";
-$password = "NKQ6219!";
-$database = "movie_production";
-
-$sql = mysqli_connect($host, $username, $password, $database) or die('Could not connect');
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if ($conn-> connect_error) {
+        die("Connection failed:". $conn-> connect_error);
+} 
 
 ?>
+

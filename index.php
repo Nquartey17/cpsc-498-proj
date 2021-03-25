@@ -1,7 +1,14 @@
-<!DOCTYPE html>
+<?php include('include/config.php'); ?>
 <html>
  <head>
  <link rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script type="text/javascript" defer>
+function toggleMajors() {
+    if ($("#majors").val() === "Accounting") {$("#acct").show();}
+    else if ($("#majors").val() != "Accounting") {$("#acct").hide();}
+}
+</script>
  <a href="index.html">Back to Home</a>
   <title>Courses for Majors</title>
   <style type="text/css">
@@ -9,11 +16,11 @@
  </head>
  <body>
 <h1>Courses for Majors</h1>
-<form method="POST">
+<div>
         <label for="majors">Select the major you want to view: </label>
         <select name="majors" id="majors">
 		<option disabled selected>-- Select Major --</option>
-                <option value="Accounting">accounting</option>
+                <option value="Accounting">Accounting</option>
                 <option value="AmericanStudies">American Studies</option>
                 <option value="Anthropology">Anthropology</option>
                 <option value="AppliedPhysics">Applied Physics</option>
@@ -54,9 +61,10 @@
                 <option value="Studio Art">Studio Art</option>
                 <option value="Theater">Theater</option>
                 <option value="Writing">Writing</option>
-        <input type="submit" name="submit" value="Submit">
+        <input type="submit" name="submit" value="Submit" onclick="toggleMajors()">
 </select>
-</form><br>
+</div><br>
+<div id="acct"><br>
 	<table>
 	 <tr>
 	  <th>Name</th>
@@ -65,12 +73,8 @@
 	  <th>Pass/Fail</th>
 	 </tr>
  <?php 
-$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
-if ($conn-> connect_error) {
-	die("Connection failed:". $conn-> connect_error);
-} 
 
-$sql = "SELECT majorname, prereqs, credits, passfail from compsci";
+$sql = "SELECT majorname, prereqs, credits, passfail from accounting";
 $result = $conn-> query($sql);
 
 if ($result-> num_rows > 0) {
@@ -85,6 +89,7 @@ else {
 
 $conn-> close();
 ?> 
+</div>
 </table>
  </body>
 </html>
