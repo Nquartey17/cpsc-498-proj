@@ -53,8 +53,7 @@
                 <option value="Theater">Theater</option>
                 <option value="Writing">Writing</option>
         </select>
-        <br><br>
-        <input type="submit" value="Submit">
+        <br>
 </div>
 
 <div><br>
@@ -62,9 +61,9 @@
          <tr>
           <th>Name</th>
           <th>Credits</th>
+	  <th>Completed</th>
          </tr>
 <?php 
-$majorname = "<script>document.write(major)</script>";
 
 $major = "accounting";
 $sql = "SELECT majorname, credits from $major";
@@ -72,7 +71,7 @@ $result = $conn-> query($sql);
 
 if ($result-> num_rows > 0) {
         while ($row = $result-> fetch_assoc()) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td></tr>";
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check'[".$row['ID']."]'></td></tr>";
         }
         echo "</table>";
 }
@@ -84,8 +83,10 @@ $conn-> close();
 ?> 
 </table>
 </div>
+<button name="submit"  id="submit" type="button">Submit</button>
 
-
+<p>Total credits in this major: </p>
+<span id="result"></span>
 </body>
 </html>
 
