@@ -84,6 +84,56 @@ quantity6 = document.getElementById("quantity6");
 quantity7 = document.getElementById("quantity7");
 quantity8 = document.getElementById("quantity8");
 
+if ($("#classes").val() === "1") {
+g1 = Default(element1.value, quantity1.value);
+}
+
+if ($("#classes").val() === "2") {
+g1 = Default(element1.value, quantity1.value);
+g2 = Default(element2.value, quantity2.value);
+}
+
+if ($("#classes").val() === "3") {
+g1 = Default(element1.value, quantity1.value);
+g2 = Default(element2.value, quantity2.value);
+g3 = Default(element3.value, quantity3.value);
+}
+
+if ($("#classes").val() === "4") {
+g1 = Default(element1.value, quantity1.value);
+g2 = Default(element2.value, quantity2.value);
+g3 = Default(element3.value, quantity3.value);
+g4 = Default(element4.value, quantity4.value);
+}
+
+if ($("#classes").val() === "5") {
+g1 = Default(element1.value, quantity1.value);
+g2 = Default(element2.value, quantity2.value);
+g3 = Default(element3.value, quantity3.value);
+g4 = Default(element4.value, quantity4.value);
+g5 = Default(element5.value, quantity5.value);
+}
+
+if ($("#classes").val() === "6") {
+g1 = Default(element1.value, quantity1.value);
+g2 = Default(element2.value, quantity2.value);
+g3 = Default(element3.value, quantity3.value);
+g4 = Default(element4.value, quantity4.value);
+g5 = Default(element5.value, quantity5.value);
+g6 = Default(element6.value, quantity6.value);
+}
+
+if ($("#classes").val() === "7") {
+g1 = Default(element1.value, quantity1.value);
+g2 = Default(element2.value, quantity2.value);
+g3 = Default(element3.value, quantity3.value);
+g4 = Default(element4.value, quantity4.value);
+g5 = Default(element5.value, quantity5.value);
+g6 = Default(element6.value, quantity6.value);
+g7 = Default(element7.value, quantity7.value);
+}
+
+if ($("#classes").val() === "8") {
 g1 = Default(element1.value, quantity1.value);
 g2 = Default(element2.value, quantity2.value);
 g3 = Default(element3.value, quantity3.value);
@@ -92,6 +142,8 @@ g5 = Default(element5.value, quantity5.value);
 g6 = Default(element6.value, quantity6.value);
 g7 = Default(element7.value, quantity7.value);
 g8 = Default(element8.value, quantity8.value);
+}
+
 }
 
 if(document.getElementById("Canadian").checked) {
@@ -152,26 +204,35 @@ g7 = Default(element7.value, quantity7.value);
 g8 = Default(element8.value, quantity8.value);
 }
 
+if(document.getElementById("Custom").checked) {
 
-credits = parseInt(quantity1.value) + parseInt(quantity2.value) + parseInt(quantity3.value) + parseInt(quantity4.value);
-total = g1 +g2 +g3 +g4;
+}
+
+if ($("#classes").val() === "1") {
+credits = parseInt(quantity1.value);
+total = g1;
+}
+
+if ($("#classes").val() === "2") {
+credits = parseInt(quantity1.value) + parseInt(quantity2.value);
+total = g1 + g2;
+}
+
 answer = total / credits;
-test= Canadian(element1.value, quantity1.value);
 document.getElementById("result").innerHTML = answer;
 }
-
-function numClasses() {
-num = document.getElementById("classes").value;
-document.getElementById("display").innerHTML = num;
-}
-
 
 $(document).ready(function () {
     toggleFields();
     $("#classes").change(function () {
         toggleFields();
     });
+});
 
+$(document).ready(function() {
+   $('input[type="radio"]').click(function() {
+	var inputValue = $(this).attr("value");
+   });
 });
 
 function toggleFields() {
@@ -207,7 +268,17 @@ function toggleFields() {
         <label for="Canadian">Canadian</label><br>
         <input type="radio" id="Basic" name="scale" value="Basic">
         <label for="Basic">Basic</label><br>
-        <br>
+        <input type="radio" id="Custom" name="scale" value="Custom">
+        <label for="Custom">Custom</label><br>
+	
+	<div id="options">
+	test
+<!--	<input type="radio" id="Standard" name="scale" value="Standard">
+        <label for="Standard">Standard</label><br>
+        <input type="radio" id="Simple" name="scale" value="Simple">
+        <label for="Simple">Simple</label><br>
+	</div> -->
+	<br>
 </div>
 
 
@@ -226,13 +297,13 @@ function toggleFields() {
 </div>
 <span id="display"></span>
 
-<br><br>
+<br>
 
 <div id="group1">
 <label for="grade1">Enter your grade in class 1:</label><br>
         <input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity1">Select the amount of Credits for class 1:</label><br>
-        <input type="number" id="quantity1" name="quantity1" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 	
 	<button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
 </div>
@@ -241,12 +312,12 @@ function toggleFields() {
         <label for="grade1">Enter your grade in class 1:</label><br>
         <input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity1">Select the amount of Credits for class 1:</label><br>
-        <input type="number" id="quantity1" name="quantity1" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade2">Enter your grade in class 2:</label><br>
         <input type="number" id="grade2" name="grade2" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity2">Select the amount of Credits for class 2:</label><br>
-        <input type="number" id="quantity2" name="quantity2" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity2" name="quantity2" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
 </div>
@@ -255,17 +326,17 @@ function toggleFields() {
         <label for="grade1">Enter your grade in class 1:</label><br>
         <input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity1">Select the amount of Credits for class 1:</label><br>
-        <input type="number" id="quantity1" name="quantity1" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade2">Enter your grade in class 2:</label><br>
         <input type="number" id="grade2" name="grade2" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity2">Select the amount of Credits for class 2:</label><br>
-        <input type="number" id="quantity2" name="quantity2" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity2" name="quantity2" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
 	<label for="grade3">Enter your grade in class 3:</label><br>
         <input type="number" id="grade3" name="grade3" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity3">Select the amount of Credits for class 3:</label><br>
-        <input type="number" id="quantity3" name="quantity3" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity3" name="quantity3" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
 </div>
@@ -275,22 +346,22 @@ function toggleFields() {
 	<label for="grade1">Enter your grade in class 1:</label><br>
 	<input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
 	<label for="quantity1">Select the amount of Credits for class 1:</label><br>
-	<input type="number" id="quantity1" name="quantity1" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+	<input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
 	<label for="grade2">Enter your grade in class 2:</label><br>
 	<input type="number" id="grade2" name="grade2" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
 	<label for="quantity2">Select the amount of Credits for class 2:</label><br>
-	<input type="number" id="quantity2" name="quantity2" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+	<input type="number" id="quantity2" name="quantity2" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
 	<label for="grade3">Enter your grade in class 3:</label><br>
 	<input type="number" id="grade3" name="grade3" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
 	<label for="quantity3">Select the amount of Credits for class 3:</label><br>
-	<input type="number" id="quantity3" name="quantity3" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+	<input type="number" id="quantity3" name="quantity3" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
 	<label for="grade4">Enter your grade in class 4:</label><br>
 	<input type="number" id="grade4" name="grade4" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
 	<label for="quantity4">Select the amount of Credits for class 4:</label><br>
-	<input type="number" id="quantity4" name="quantity4" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+	<input type="number" id="quantity4" name="quantity4" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
 	<button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
 </div>
@@ -299,27 +370,27 @@ function toggleFields() {
         <label for="grade1">Enter your grade in class 1:</label><br>
         <input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity1">Select the amount of Credits for class 1:</label><br>
-        <input type="number" id="quantity1" name="quantity1" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade2">Enter your grade in class 2:</label><br>
         <input type="number" id="grade2" name="grade2" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity2">Select the amount of Credits for class 2:</label><br>
-        <input type="number" id="quantity2" name="quantity2" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity2" name="quantity2" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade3">Enter your grade in class 3:</label><br>
         <input type="number" id="grade3" name="grade3" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity3">Select the amount of Credits for class 3:</label><br>
-        <input type="number" id="quantity3" name="quantity3" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity3" name="quantity3" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade4">Enter your grade in class 4:</label><br>
         <input type="number" id="grade4" name="grade4" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity4">Select the amount of Credits for class 4:</label><br>
-        <input type="number" id="quantity4" name="quantity4" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity4" name="quantity4" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade5">Enter your grade in class 5:</label><br>
         <input type="number" id="grade5" name="grade5" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity5">Select the amount of Credits for class 5:</label><br>
-        <input type="number" id="quantity5" name="quantity5" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity5" name="quantity5" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
 </div>
@@ -328,32 +399,32 @@ function toggleFields() {
         <label for="grade1">Enter your grade in class 1:</label><br>
         <input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity1">Select the amount of Credits for class 1:</label><br>
-        <input type="number" id="quantity1" name="quantity1" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade2">Enter your grade in class 2:</label><br>
         <input type="number" id="grade2" name="grade2" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity2">Select the amount of Credits for class 2:</label><br>
-        <input type="number" id="quantity2" name="quantity2" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity2" name="quantity2" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade3">Enter your grade in class 3:</label><br>
         <input type="number" id="grade3" name="grade3" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity3">Select the amount of Credits for class 3:</label><br>
-        <input type="number" id="quantity3" name="quantity3" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity3" name="quantity3" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade4">Enter your grade in class 4:</label><br>
         <input type="number" id="grade4" name="grade4" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity4">Select the amount of Credits for class 4:</label><br>
-        <input type="number" id="quantity4" name="quantity4" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity4" name="quantity4" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade5">Enter your grade in class 5:</label><br>
         <input type="number" id="grade5" name="grade5" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity5">Select the amount of Credits for class 5:</label><br>
-        <input type="number" id="quantity5" name="quantity5" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity5" name="quantity5" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade6">Enter your grade in class 6:</label><br>
         <input type="number" id="grade6" name="grade6" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity6">Select the amount of Credits for class 6:</label><br>
-        <input type="number" id="quantity6" name="quantity6" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity6" name="quantity6" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
 </div>
@@ -362,37 +433,37 @@ function toggleFields() {
         <label for="grade1">Enter your grade in class 1:</label><br>
         <input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity1">Select the amount of Credits for class 1:</label><br>
-        <input type="number" id="quantity1" name="quantity1" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade2">Enter your grade in class 2:</label><br>
         <input type="number" id="grade2" name="grade2" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity2">Select the amount of Credits for class 2:</label><br>
-        <input type="number" id="quantity2" name="quantity2" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity2" name="quantity2" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade3">Enter your grade in class 3:</label><br>
         <input type="number" id="grade3" name="grade3" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity3">Select the amount of Credits for class 3:</label><br>
-        <input type="number" id="quantity3" name="quantity3" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity3" name="quantity3" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade4">Enter your grade in class 4:</label><br>
         <input type="number" id="grade4" name="grade4" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity4">Select the amount of Credits for class 4:</label><br>
-        <input type="number" id="quantity4" name="quantity4" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity4" name="quantity4" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade5">Enter your grade in class 5:</label><br>
         <input type="number" id="grade5" name="grade5" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity5">Select the amount of Credits for class 5:</label><br>
-        <input type="number" id="quantity5" name="quantity5" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity5" name="quantity5" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade6">Enter your grade in class 6:</label><br>
         <input type="number" id="grade6" name="grade6" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity6">Select the amount of Credits for class 6:</label><br>
-        <input type="number" id="quantity6" name="quantity6" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity6" name="quantity6" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
 	<label for="grade7">Enter your grade in class 7:</label><br>
         <input type="number" id="grade7" name="grade7" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity7">Select the amount of Credits for class 7:</label><br>
-        <input type="number" id="quantity7" name="quantity7" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity7" name="quantity7" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
 </div>
@@ -401,43 +472,44 @@ function toggleFields() {
         <label for="grade1">Enter your grade in class 1:</label><br>
         <input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity1">Select the amount of Credits for class 1:</label><br>
-        <input type="number" id="quantity1" name="quantity1" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade2">Enter your grade in class 2:</label><br>
         <input type="number" id="grade2" name="grade2" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity2">Select the amount of Credits for class 2:</label><br>
-        <input type="number" id="quantity2" name="quantity2" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity2" name="quantity2" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade3">Enter your grade in class 3:</label><br>
         <input type="number" id="grade3" name="grade3" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity3">Select the amount of Credits for class 3:</label><br>
-        <input type="number" id="quantity3" name="quantity3" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity3" name="quantity3" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade4">Enter your grade in class 4:</label><br>
         <input type="number" id="grade4" name="grade4" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity4">Select the amount of Credits for class 4:</label><br>
-        <input type="number" id="quantity4" name="quantity4" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity4" name="quantity4" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade5">Enter your grade in class 5:</label><br>
         <input type="number" id="grade5" name="grade5" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity5">Select the amount of Credits for class 5:</label><br>
-        <input type="number" id="quantity5" name="quantity5" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity5" name="quantity5" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade6">Enter your grade in class 6:</label><br>
         <input type="number" id="grade6" name="grade6" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity6">Select the amount of Credits for class 6:</label><br>
-        <input type="number" id="quantity6" name="quantity6" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity6" name="quantity6" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade7">Enter your grade in class 7:</label><br>
         <input type="number" id="grade7" name="grade7" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity7">Select the amount of Credits for class 7:</label><br>
-        <input type="number" id="quantity7" name="quantity7" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity7" name="quantity7" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade8">Enter your grade in class 8:</label><br>
         <input type="number" id="grade8" name="grade8" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity8">Select the amount of Credits for class 8:</label><br>
-        <input type="number" id="quantity8" name="quantity8" min="1" max="5" oninput="this.value = Math.abs(this.value)"><br><br>
+        <input type="number" id="quantity8" name="quantity8" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
         <button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
+</div>
 <p id="demo"></p>
 <p>GPA: </p>
 <span id="result"></span>

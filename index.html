@@ -1,14 +1,66 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html>
+<head>
+<title>CNU Student Helper</title>
+<link href="css/style.css" rel="stylesheet">
+</head>
+
+<style>
+img {
+max-width: 100%;
+height: auto;
+}
+
+.header {
+  background: #133c8b;
+  height: auto;
+  max-width: 100%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 5px;
+}
+.grid-item {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 50px;
+  font-size: 30px;
+  text-align: center;
+}
+</style>
+
+<div class="header">
+<header>
+<img src="https://i.imgur.com/T2Xm082.jpg" alt="">
+</header>
+</div>
+
 <body>
 
-<h1>CNU Student Helper</h1>
-<a href="finalgradecalc.html">Final Grade Calculator</a>
-<br>
-<a href="gpacalc.html">GPA Calculator</a>
-<br>
-<a href="index.php">Courses for Majors</a>
-<br>
-<a href="checklist.html">Checklist</a>
+<div class="grid-container">
+  <div class="grid-item">
+  <a href="finalgradecalc.html">
+  <img src="https://i.imgur.com/cmr23z8.jpg" alt="">
+  </a><br>Final Grade Calculator</div>
+  
+  <div class="grid-item">
+  <a href="gpacalc.html">
+  <img src="https://i.imgur.com/IP3iTca.jpg" alt="">
+  </a><br>GPA Calculator</div>
+
+  <div class="grid-item">
+  <a href="index.php">
+  <img src="https://i.imgur.com/1bKagxg.jpg" alt="">
+  </a><br>Courses for majors</div>  
+  
+  <div class="grid-item">
+  <a href="checklist.php">
+  <img src="https://i.imgur.com/nIJrxjz.jpg" alt="">
+  </a><br>Checklist</div>
+
+  <div class="grid-item">5</div>
+  <div class="grid-item">6</div> 
+</div>
 </body>
 </html>
