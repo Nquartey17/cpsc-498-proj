@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Final Grade Calculator</title>
+<link href="css/style.css" rel="stylesheet">
+</head>
 
 <style>
 img {
@@ -13,6 +16,37 @@ height: auto;
   height: auto;
   max-width: 100%;
 }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  width: 100%;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  text-align: center;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -32,17 +66,39 @@ function finalCalc() {
 	minus = 1 - num3;
 	mult = minus * num1;
 	minus2 = num2 - mult;
-	document.getElementById("result").innerHTML = minus2 / num3; }
+	answer = minus2 / num3;
+	rounded = Math.round(answer * 100) / 100;
+	document.getElementById("result").innerHTML = rounded; }
 	
 	else {
 	document.getElementById("result").innerHTML = "Please make sure all values range from 0-100";
 	}
 }
-</script>
-<link rel="stylesheet" href="css/style.css">
-</head>
 
-<a href="index.html">Back to Home</a>
+function checkTextField(field) {
+  document.getElementById("error").innerText =
+    (field.value === "") ? "Field is empty." : "";
+}
+
+</script>
+
+<div class="header">
+<header>
+<img src="https://i.imgur.com/T2Xm082.jpg" alt="">
+</header>
+</div>
+
+<body>
+  <div class="topnav">
+  <a href="index.html">Home</a>
+  <a href="finalgradecalc.html">Final Grade Calculator</a>
+  <a href="gpacalc.html">GPA Calculator</a>
+  <a href="index.php">Courses for majors</a>
+  <a href="checklist.php">Checklist</a>
+  <a href="resources.html">Resources</a>
+  <a href="help.html">Help</a>
+  </div>
+
 
 <body>
 <div class="wrapper">

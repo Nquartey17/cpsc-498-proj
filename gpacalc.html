@@ -1,7 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/style.css">
+<title>GPA Calculator</title>
+<link href="css/style.css" rel="stylesheet">
+</head>
+
+<style>
+img {
+max-width: 100%;
+height: auto;
+}
+
+.header {
+  background: #133c8b;
+  height: auto;
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  width: 100%;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  text-align: center;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+</style>
+
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script type="text/javascript" defer>
 var A = 4.0;
@@ -16,16 +77,15 @@ var Dplus = 1.3;
 var D = 1.0;
 var Dminus = 0.7;
 var F = 0;
-var g1 = 0;
-var g2 = 0;
-var g3 = 0;
-var g4 = 0;
-var g5 = 0;
-var g6 = 0;
-var g7 = 0;
-var g8 = 0;
+var g1;
+var g2;
+var g3;
+var g4;
+var g5;
+var g6;
+var g7;
+var g8;
 var element = 0;
-console.log(element);
 
 function Default(element, quantity) {
                 if (element >= 93 && element <= 100) {return  A * quantity}
@@ -65,6 +125,7 @@ function Basic(element, quantity) {
 }
 
 function checked() {
+
 if(document.getElementById("CNU").checked) {
 element1 = document.getElementById("grade1");
 element2 = document.getElementById("grade2");
@@ -88,7 +149,7 @@ if ($("#classes").val() === "1") {
 g1 = Default(element1.value, quantity1.value);
 }
 
-if ($("#classes").val() === "2") {
+else if ($("#classes").val() === "2") {
 g1 = Default(element1.value, quantity1.value);
 g2 = Default(element2.value, quantity2.value);
 }
@@ -173,6 +234,67 @@ g5 = Default(element5.value, quantity5.value);
 g6 = Default(element6.value, quantity6.value);
 g7 = Default(element7.value, quantity7.value);
 g8 = Default(element8.value, quantity8.value);
+
+if ($("#classes").val() === "1") {
+g1 = Canadian(element1.value, quantity1.value);
+}
+
+else if ($("#classes").val() === "2") {
+g1 = Canadian(element1.value, quantity1.value);
+g2 = Canadian(element2.value, quantity2.value);
+}
+
+if ($("#classes").val() === "3") {
+g1 = Canadian(element1.value, quantity1.value);
+g2 = Canadian(element2.value, quantity2.value);
+g3 = Canadian(element3.value, quantity3.value);
+}
+
+if ($("#classes").val() === "4") {
+g1 = Canadian(element1.value, quantity1.value);
+g2 = Canadian(element2.value, quantity2.value);
+g3 = Canadian(element3.value, quantity3.value);
+g4 = Canadian(element4.value, quantity4.value);
+}
+
+if ($("#classes").val() === "5") {
+g1 = Canadian(element1.value, quantity1.value);
+g2 = Canadian(element2.value, quantity2.value);
+g3 = Canadian(element3.value, quantity3.value);
+g4 = Canadian(element4.value, quantity4.value);
+g5 = Canadian(element5.value, quantity5.value);
+}
+
+if ($("#classes").val() === "6") {
+g1 = Canadian(element1.value, quantity1.value);
+g2 = Canadian(element2.value, quantity2.value);
+g3 = Canadian(element3.value, quantity3.value);
+g4 = Canadian(element4.value, quantity4.value);
+g5 = Canadian(element5.value, quantity5.value);
+g6 = Canadian(element6.value, quantity6.value);
+}
+
+if ($("#classes").val() === "7") {
+g1 = Canadian(element1.value, quantity1.value);
+g2 = Canadian(element2.value, quantity2.value);
+g3 = Canadian(element3.value, quantity3.value);
+g4 = Canadian(element4.value, quantity4.value);
+g5 = Canadian(element5.value, quantity5.value);
+g6 = Canadian(element6.value, quantity6.value);
+g7 = Canadian(element7.value, quantity7.value);
+}
+
+if ($("#classes").val() === "8") {
+g1 = Canadian(element1.value, quantity1.value);
+g2 = Canadian(element2.value, quantity2.value);
+g3 = Canadian(element3.value, quantity3.value);
+g4 = Canadian(element4.value, quantity4.value);
+g5 = Canadian(element5.value, quantity5.value);
+g6 = Canadian(element6.value, quantity6.value);
+g7 = Canadian(element7.value, quantity7.value);
+g8 = Canadian(element8.value, quantity8.value);
+}
+
 }
 
 if(document.getElementById("Basic").checked) {
@@ -202,6 +324,69 @@ g5 = Default(element5.value, quantity5.value);
 g6 = Default(element6.value, quantity6.value);
 g7 = Default(element7.value, quantity7.value);
 g8 = Default(element8.value, quantity8.value);
+
+
+if ($("#classes").val() === "1") {
+g1 = Basic(element1.value, quantity1.value);
+}
+
+else if ($("#classes").val() === "2") {
+g1 = Basic(element1.value, quantity1.value);
+g2 = Basic(element2.value, quantity2.value);
+}
+
+if ($("#classes").val() === "3") {
+g1 = Basic(element1.value, quantity1.value);
+g2 = Basic(element2.value, quantity2.value);
+g3 = Basic(element3.value, quantity3.value);
+}
+
+if ($("#classes").val() === "4") {
+g1 = Basic(element1.value, quantity1.value);
+g2 = Basic(element2.value, quantity2.value);
+g3 = Basic(element3.value, quantity3.value);
+g4 = Basic(element4.value, quantity4.value);
+}
+
+if ($("#classes").val() === "5") {
+g1 = Basic(element1.value, quantity1.value);
+g2 = Basic(element2.value, quantity2.value);
+g3 = Basic(element3.value, quantity3.value);
+g4 = Basic(element4.value, quantity4.value);
+g5 = Basic(element5.value, quantity5.value);
+}
+
+if ($("#classes").val() === "6") {
+g1 = Basic(element1.value, quantity1.value);
+g2 = Basic(element2.value, quantity2.value);
+g3 = Basic(element3.value, quantity3.value);
+g4 = Basic(element4.value, quantity4.value);
+g5 = Basic(element5.value, quantity5.value);
+g6 = Basic(element6.value, quantity6.value);
+}
+
+if ($("#classes").val() === "7") {
+g1 = Basic(element1.value, quantity1.value);
+g2 = Basic(element2.value, quantity2.value);
+g3 = Basic(element3.value, quantity3.value);
+g4 = Basic(element4.value, quantity4.value);
+g5 = Basic(element5.value, quantity5.value);
+g6 = Basic(element6.value, quantity6.value);
+g7 = Basic(element7.value, quantity7.value);
+}
+
+if ($("#classes").val() === "8") {
+g1 = Basic(element1.value, quantity1.value);
+g2 = Basic(element2.value, quantity2.value);
+g3 = Basic(element3.value, quantity3.value);
+g4 = Basic(element4.value, quantity4.value);
+g5 = Basic(element5.value, quantity5.value);
+g6 = Basic(element6.value, quantity6.value);
+g7 = Basic(element7.value, quantity7.value);
+g8 = Basic(element8.value, quantity8.value);
+}
+
+
 }
 
 if(document.getElementById("Custom").checked) {
@@ -218,8 +403,44 @@ credits = parseInt(quantity1.value) + parseInt(quantity2.value);
 total = g1 + g2;
 }
 
+if ($("#classes").val() === "3") {
+credits = parseInt(quantity1.value) + parseInt(quantity2.value) + parseInt(quantity3.value);
+total = g1 + g2 + g3;
+}
+
+if ($("#classes").val() === "4") {
+credits = parseInt(quantity1.value) + parseInt(quantity2.value) + parseInt(quantity3.value) + parseInt(quantity4.value);
+total = g1 + g2 + g3 + g4;
+}
+
+if ($("#classes").val() === "5") {
+credits = parseInt(quantity1.value) + parseInt(quantity2.value) + parseInt(quantity3.value) + parseInt(quantity4.value) + 
+parseInt(quantity5.value);
+total = g1 + g2 + g3 + g4 + g5;
+}
+
+if ($("#classes").val() === "6") {
+credits = parseInt(quantity1.value) + parseInt(quantity2.value) + parseInt(quantity3.value) + parseInt(quantity4.value) + 
+parseInt(quantity5.value) + parseInt(quantity6.value);
+total = g1 + g2 + g3 + g4 + g5 + g6;
+}
+
+if ($("#classes").val() === "7") {
+credits = parseInt(quantity1.value) + parseInt(quantity2.value) + parseInt(quantity3.value) + parseInt(quantity4.value) + 
+parseInt(quantity5.value) + parseInt(quantity6.value) + parseInt(quantity7.value);
+total = g1 + g2 + g3 + g4 + g5 + g6 + g7;
+}
+
+if ($("#classes").val() === "8") {
+credits = parseInt(quantity1.value) + parseInt(quantity2.value) + parseInt(quantity3.value) + parseInt(quantity4.value) +
+parseInt(quantity5.value) + parseInt(quantity6.value) + parseInt(quantity7.value) + parseInt(quantity8.value);
+total = g1 + g2 + g3 + g4 + g5 + g6 + g7 + g8;
+}
+
+
 answer = total / credits;
-document.getElementById("result").innerHTML = answer;
+rounded = Math.round(answer * 100) / 100;
+document.getElementById("result").innerHTML = rounded;
 }
 
 $(document).ready(function () {
@@ -236,28 +457,34 @@ $(document).ready(function() {
 });
 
 function toggleFields() {
-    if ($("#classes").val() === "1") {$("#group1").show();} 
-    else if ($("#classes").val() != "1") {$("#group1").hide();}
-    if ($("#classes").val() === "2") {$("#group2").show();}
-    else if ($("#classes").val() != "2") {$("#group2").hide();}
-    if ($("#classes").val() === "3") {$("#group3").show();}
-    else if ($("#classes").val() != "3") {$("#group3").hide();}
-    if ($("#classes").val() === "4") {$("#group4").show();}
-    else if ($("#classes").val() != "4") {$("#group4").hide();}
-    if ($("#classes").val() === "5") {$("#group5").show();}
-    else if ($("#classes").val() != "5") {$("#group5").hide();}
-    if ($("#classes").val() === "6") {$("#group6").show();}
-    else if ($("#classes").val() != "6") {$("#group6").hide();}
-    if ($("#classes").val() === "7") {$("#group7").show();}
-    else if ($("#classes").val() != "7") {$("#group7").hide();}
-    if ($("#classes").val() === "8") {$("#group8").show();}
-    else if ($("#classes").val() != "8") {$("#group8").hide();}
+    for(let i =1; i<= 8; i++) {
+        if ($("#classes").val() < i) {
+	    $("#group" + i).hide();
+	} else {
+	    $("#group" + i).show();
+	}
+    }
 }
 
 </script>
-<a href="index.html">Back to Home</a>
-</head>
 <body>
+<div class="header">
+<header>
+<img src="https://i.imgur.com/T2Xm082.jpg" alt="">
+</header>
+</div>
+
+  <div class="topnav">
+  <a href="index.html">Home</a>
+  <a href="finalgradecalc.html">Final Grade Calculator</a>
+  <a href="gpacalc.html">GPA Calculator</a>
+  <a href="index.php">Courses for majors</a>
+  <a href="checklist.php">Checklist</a>
+  <a href="resources.html">Resources</a>
+  <a href="help.html">Help</a>
+  </div>
+
+
 <h1>GPA Calculator</h1>
 
 <div>
@@ -272,7 +499,6 @@ function toggleFields() {
         <label for="Custom">Custom</label><br>
 	
 	<div id="options">
-	test
 <!--	<input type="radio" id="Standard" name="scale" value="Standard">
         <label for="Standard">Standard</label><br>
         <input type="radio" id="Simple" name="scale" value="Simple">
@@ -305,211 +531,67 @@ function toggleFields() {
         <label for="quantity1">Select the amount of Credits for class 1:</label><br>
         <input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 	
-	<button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
 </div>
 
 <div id="group2">
-        <label for="grade1">Enter your grade in class 1:</label><br>
-        <input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity1">Select the amount of Credits for class 1:</label><br>
-        <input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade2">Enter your grade in class 2:</label><br>
         <input type="number" id="grade2" name="grade2" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity2">Select the amount of Credits for class 2:</label><br>
         <input type="number" id="quantity2" name="quantity2" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
-        <button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
 </div>
 
 <div id="group3">
-        <label for="grade1">Enter your grade in class 1:</label><br>
-        <input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity1">Select the amount of Credits for class 1:</label><br>
-        <input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade2">Enter your grade in class 2:</label><br>
-        <input type="number" id="grade2" name="grade2" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity2">Select the amount of Credits for class 2:</label><br>
-        <input type="number" id="quantity2" name="quantity2" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
 	<label for="grade3">Enter your grade in class 3:</label><br>
         <input type="number" id="grade3" name="grade3" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity3">Select the amount of Credits for class 3:</label><br>
         <input type="number" id="quantity3" name="quantity3" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
-        <button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
 </div>
 
 
 <div id="group4">
-	<label for="grade1">Enter your grade in class 1:</label><br>
-	<input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-	<label for="quantity1">Select the amount of Credits for class 1:</label><br>
-	<input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-	<label for="grade2">Enter your grade in class 2:</label><br>
-	<input type="number" id="grade2" name="grade2" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-	<label for="quantity2">Select the amount of Credits for class 2:</label><br>
-	<input type="number" id="quantity2" name="quantity2" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-	<label for="grade3">Enter your grade in class 3:</label><br>
-	<input type="number" id="grade3" name="grade3" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-	<label for="quantity3">Select the amount of Credits for class 3:</label><br>
-	<input type="number" id="quantity3" name="quantity3" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
 	<label for="grade4">Enter your grade in class 4:</label><br>
 	<input type="number" id="grade4" name="grade4" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
 	<label for="quantity4">Select the amount of Credits for class 4:</label><br>
 	<input type="number" id="quantity4" name="quantity4" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
-	<button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
 </div>
 
 <div id="group5">
-        <label for="grade1">Enter your grade in class 1:</label><br>
-        <input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity1">Select the amount of Credits for class 1:</label><br>
-        <input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade2">Enter your grade in class 2:</label><br>
-        <input type="number" id="grade2" name="grade2" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity2">Select the amount of Credits for class 2:</label><br>
-        <input type="number" id="quantity2" name="quantity2" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade3">Enter your grade in class 3:</label><br>
-        <input type="number" id="grade3" name="grade3" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity3">Select the amount of Credits for class 3:</label><br>
-        <input type="number" id="quantity3" name="quantity3" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade4">Enter your grade in class 4:</label><br>
-        <input type="number" id="grade4" name="grade4" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity4">Select the amount of Credits for class 4:</label><br>
-        <input type="number" id="quantity4" name="quantity4" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
         <label for="grade5">Enter your grade in class 5:</label><br>
         <input type="number" id="grade5" name="grade5" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity5">Select the amount of Credits for class 5:</label><br>
         <input type="number" id="quantity5" name="quantity5" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
-        <button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
 </div>
 
 <div id="group6">
-        <label for="grade1">Enter your grade in class 1:</label><br>
-        <input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity1">Select the amount of Credits for class 1:</label><br>
-        <input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade2">Enter your grade in class 2:</label><br>
-        <input type="number" id="grade2" name="grade2" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity2">Select the amount of Credits for class 2:</label><br>
-        <input type="number" id="quantity2" name="quantity2" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade3">Enter your grade in class 3:</label><br>
-        <input type="number" id="grade3" name="grade3" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity3">Select the amount of Credits for class 3:</label><br>
-        <input type="number" id="quantity3" name="quantity3" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade4">Enter your grade in class 4:</label><br>
-        <input type="number" id="grade4" name="grade4" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity4">Select the amount of Credits for class 4:</label><br>
-        <input type="number" id="quantity4" name="quantity4" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade5">Enter your grade in class 5:</label><br>
-        <input type="number" id="grade5" name="grade5" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity5">Select the amount of Credits for class 5:</label><br>
-        <input type="number" id="quantity5" name="quantity5" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
         <label for="grade6">Enter your grade in class 6:</label><br>
         <input type="number" id="grade6" name="grade6" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity6">Select the amount of Credits for class 6:</label><br>
         <input type="number" id="quantity6" name="quantity6" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
-        <button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
 </div>
 
 <div id="group7">
-        <label for="grade1">Enter your grade in class 1:</label><br>
-        <input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity1">Select the amount of Credits for class 1:</label><br>
-        <input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade2">Enter your grade in class 2:</label><br>
-        <input type="number" id="grade2" name="grade2" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity2">Select the amount of Credits for class 2:</label><br>
-        <input type="number" id="quantity2" name="quantity2" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade3">Enter your grade in class 3:</label><br>
-        <input type="number" id="grade3" name="grade3" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity3">Select the amount of Credits for class 3:</label><br>
-        <input type="number" id="quantity3" name="quantity3" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade4">Enter your grade in class 4:</label><br>
-        <input type="number" id="grade4" name="grade4" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity4">Select the amount of Credits for class 4:</label><br>
-        <input type="number" id="quantity4" name="quantity4" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade5">Enter your grade in class 5:</label><br>
-        <input type="number" id="grade5" name="grade5" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity5">Select the amount of Credits for class 5:</label><br>
-        <input type="number" id="quantity5" name="quantity5" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade6">Enter your grade in class 6:</label><br>
-        <input type="number" id="grade6" name="grade6" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity6">Select the amount of Credits for class 6:</label><br>
-        <input type="number" id="quantity6" name="quantity6" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
 	<label for="grade7">Enter your grade in class 7:</label><br>
         <input type="number" id="grade7" name="grade7" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity7">Select the amount of Credits for class 7:</label><br>
         <input type="number" id="quantity7" name="quantity7" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
-        <button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
 </div>
 
 <div id="group8">
-        <label for="grade1">Enter your grade in class 1:</label><br>
-        <input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity1">Select the amount of Credits for class 1:</label><br>
-        <input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade2">Enter your grade in class 2:</label><br>
-        <input type="number" id="grade2" name="grade2" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity2">Select the amount of Credits for class 2:</label><br>
-        <input type="number" id="quantity2" name="quantity2" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade3">Enter your grade in class 3:</label><br>
-        <input type="number" id="grade3" name="grade3" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity3">Select the amount of Credits for class 3:</label><br>
-        <input type="number" id="quantity3" name="quantity3" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade4">Enter your grade in class 4:</label><br>
-        <input type="number" id="grade4" name="grade4" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity4">Select the amount of Credits for class 4:</label><br>
-        <input type="number" id="quantity4" name="quantity4" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade5">Enter your grade in class 5:</label><br>
-        <input type="number" id="grade5" name="grade5" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity5">Select the amount of Credits for class 5:</label><br>
-        <input type="number" id="quantity5" name="quantity5" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade6">Enter your grade in class 6:</label><br>
-        <input type="number" id="grade6" name="grade6" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity6">Select the amount of Credits for class 6:</label><br>
-        <input type="number" id="quantity6" name="quantity6" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-        <label for="grade7">Enter your grade in class 7:</label><br>
-        <input type="number" id="grade7" name="grade7" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity7">Select the amount of Credits for class 7:</label><br>
-        <input type="number" id="quantity7" name="quantity7" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
 
         <label for="grade8">Enter your grade in class 8:</label><br>
         <input type="number" id="grade8" name="grade8" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
         <label for="quantity8">Select the amount of Credits for class 8:</label><br>
         <input type="number" id="quantity8" name="quantity8" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-        <button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
 </div>
+        <button id="submit"type="button"  onclick="checked()">Calculate GPA</button>
+
 <p id="demo"></p>
 <p>GPA: </p>
 <span id="result"></span>

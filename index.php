@@ -1,6 +1,67 @@
 <?php include('include/config.php'); ?>
 <html>
- <head>
+<head>
+<title>CNU Student Helper</title>
+<link href="css/style.css" rel="stylesheet">
+</head>
+<style>
+
+ table, th, td {
+border: 1px solid black;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+}
+
+td {
+text-align: center;
+}
+
+img {
+max-width: 100%;
+height: auto;
+}
+
+.header {
+  background: #133c8b;
+  height: auto;
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  width: 100%;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  text-align: center;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+</style>
+
  <link rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script type="text/javascript" defer>
@@ -91,20 +152,41 @@ function toggleMajors() {
     else if ($("#majors").val() != "spanish") {$("#spanish").hide();}
     if ($("#majors").val() === "studioart") {$("#studioart").show();}
     else if ($("#majors").val() != "studioart") {$("#studioart").hide();}
-    if ($("#majors").val() === "theater") {$("#theater").show();}
-    else if ($("#majors").val() != "theater") {$("#theater").hide();}
+    if ($("#majors").val() === "theater1") {$("#theater1").show();}
+    else if ($("#majors").val() != "theater1") {$("#theater1").hide();}
     if ($("#majors").val() === "writing") {$("#writing").show();}
     else if ($("#majors").val() != "writing") {$("#writing").hide();}
 }
 
 </script>
- <a href="index.html">Back to Home</a>
+
+<div class="header">
+<header>
+<img src="https://i.imgur.com/T2Xm082.jpg" alt="">
+</header>
+</div>
+
+
   <title>Courses for Majors</title>
   <style type="text/css">
   </style>
- </head>
  <body>
+
+  <div class="topnav">
+  <a href="index.html">Home</a>
+  <a href="finalgradecalc.html">Final Grade Calculator</a>
+  <a href="gpacalc.html">GPA Calculator</a>
+  <a href="index.php">Courses for majors</a>
+  <a href="checklist.php">Checklist</a>
+  <a href="resources.html">Resources</a>
+  <a href="help.html">Help</a>
+  </div>
+
+
 <h1>Courses for Majors</h1>
+<p>In this section, you can view the courses you need to take for your major. Select your major from the dropdown list to view.</p>
+<p><b>NOTE:</b> Courses for majors are based on the 2020-2021 student handbook. If your entry into CNU was earlier, 
+there may be some changes. Schedule your classes according to the student handbook of you entry year</p> 
 <div>
         <label for="majors">Select the major you want to view: </label>
         <select name="majors" id="majors">
@@ -147,7 +229,7 @@ function toggleMajors() {
                 <option value="socl">Sociology</option>
                 <option value="spanish">Spanish</option>
                 <option value="studioart">Studio Art</option>
-                <option value="theater">Theater</option>
+                <option value="theater1">Theater (Acting concentration)</option>
                 <option value="writing">Writing</option>
 </select>
 </div><br>
@@ -1353,6 +1435,72 @@ if (!$conn) {
 
 
 $sql = "SELECT majorname, prereqs, credits, passfail from studioart";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["prereqs"] ."</td><td>". $row["credits"] ."</td><td>". $row["passfail"] ."</td></tr>";
+        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="theater1"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Prerequites/Restrictions</th>
+          <th>Credits</th>
+          <th>Pass/Fail</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+
+$sql = "SELECT majorname, prereqs, credits, passfail from theater1";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["prereqs"] ."</td><td>". $row["credits"] ."</td><td>". $row["passfail"] ."</td></tr>";
+        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="writing"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Prerequites/Restrictions</th>
+          <th>Credits</th>
+          <th>Pass/Fail</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+
+$sql = "SELECT majorname, prereqs, credits, passfail from writing";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
