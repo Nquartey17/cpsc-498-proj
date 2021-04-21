@@ -47,6 +47,7 @@ body {
   color: white;
 }
 
+
 </style>
 
 <script type="text/javascript">
@@ -58,9 +59,25 @@ function docWrite(variable) {
 }
 
 function finalCalc() {
+
 	num1 = document.getElementById("yourgrade").value;
 	num2 = document.getElementById("desgrade").value;
 	num3 = document.getElementById("finalgrade").value;
+
+	if (num1=="") {
+		alert("Current grade is empty");
+		return false;
+	}
+        if (num2=="") {
+                alert("Desired grade is empty");
+                return false;
+        }
+        if (num3=="") {
+                alert("Grade percent is empty");
+                return false;
+        }
+	
+	else {
 	if ((num1 <= 100) && (num2 <= 100) && (num3 <= 100)) {
 	num3 = num3 / 100;
 	minus = 1 - num3;
@@ -72,6 +89,7 @@ function finalCalc() {
 	
 	else {
 	document.getElementById("result").innerHTML = "Please make sure all values range from 0-100";
+	}
 	}
 }
 

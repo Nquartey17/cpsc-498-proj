@@ -6,6 +6,39 @@
 </head>
 <style>
 
+html {
+  height: 100%;
+}
+body {
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background: #cfd4d4;
+}
+
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+tr:nth-of-type(even) { 
+  background: #fff; 
+}
+
+th { 
+  background: #333; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: center; 
+}
+
  table, th, td {
 border: 1px solid black;
 }
@@ -122,8 +155,6 @@ function toggleMajors() {
     else if ($("#majors").val() != "hist") {$("#hist").hide();}
     if ($("#majors").val() === "infosci") {$("#infosci").show();}
     else if ($("#majors").val() != "infosci") {$("#infosci").hide();}
-    if ($("#majors").val() === "infoSys") {$("#infoSys").show();}
-    else if ($("#majors").val() != "infoSys") {$("#infoSys").hide();}
     if ($("#majors").val() === "idst") {$("#idst").show();}
     else if ($("#majors").val() != "idst") {$("#idst").hide();}
     if ($("#majors").val() === "management") {$("#management").show();}
@@ -186,7 +217,11 @@ function toggleMajors() {
 <h1>Courses for Majors</h1>
 <p>In this section, you can view the courses you need to take for your major. Select your major from the dropdown list to view.</p>
 <p><b>NOTE:</b> Courses for majors are based on the 2020-2021 student handbook. If your entry into CNU was earlier, 
-there may be some changes. Schedule your classes according to the student handbook of you entry year</p> 
+there may be some changes. Schedule your classes according to the student handbook of you entry 
+year. Make sure to check the student undergraduate catalog of your entry year, which can 
+be found in the Resources section.</p> 
+
+
 <div>
         <label for="majors">Select the major you want to view: </label>
         <select name="majors" id="majors">
@@ -197,7 +232,7 @@ there may be some changes. Schedule your classes according to the student handbo
                 <option value="aphys">Applied Physics</option>
                 <option value="arthist">Art History</option>
                 <option value="biochem">Biochemistry</option>
-                <option value="bio">Biology</option>
+                <option value="bio">Biology (Cellular, Molecular and Physiological)</option>
                 <option value="chem">Chemistry</option>
                 <option value="clst">Classical Studies</option>
                 <option value="comm">Communication Studies</option>
@@ -214,17 +249,16 @@ there may be some changes. Schedule your classes according to the student handbo
                 <option value="german">German</option>
                 <option value="hist">History</option>
                 <option value="infosci">Information Science</option>
-                <option value="infoSys">Information Systems</option>
                 <option value="idst">Interdisciplinary Studies</option>
                 <option value="management">Management</option>
                 <option value="marketing">Marketing</option>
                 <option value="math">Mathematics</option>
                 <option value="mathcomp">Mathematics-Computational and Applied</option>
-                <option value="music">Music</option>
+                <option value="music">Music (Creative Studies concentration)</option>
                 <option value="neuro">Neuroscience</option>
-                <option value="phil">Philosophy</option>
+                <option value="phil">Philosophy (Arts concentration)</option>
                 <option value="polisci">Political Science</option>
-                <option value="psych">Psychology</option>
+                <option value="psych">Psychology (Arts concentration)</option>
                 <option value="social">Social Work</option>
                 <option value="socl">Sociology</option>
                 <option value="spanish">Spanish</option>
@@ -393,6 +427,14 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+
+<p>Along with the courses listed above select:</p>
+<ol>
+  <li>One non-western art history elective</li>
+  <li>One studio art course</li>
+  <li>five art history courses</li>
+</ol>
+
 </div>
 
 <div id="biochem"><br>
@@ -1020,6 +1062,10 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+
+<p>IDST 490 is the only required course for this major. To learn more about this major, see the
+undergraduate catalog in the resources section</p>
+
 </div>
 
 <div id="management"><br>
@@ -1449,6 +1495,9 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+
+<p>In addition to all cources above, select two art history courses at the 300 to 400 level</p>
+
 </div>
 
 <div id="theater1"><br>
@@ -1482,6 +1531,8 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<p>Students should select 12 additional credits of approved THEA or DANC electives</p>
+
 </div>
 
 <div id="writing"><br>
@@ -1515,6 +1566,8 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+
+
 </div>
 
 

@@ -7,6 +7,32 @@
 </head>
 
 <style>
+html {
+  height: 100%;
+}
+body {
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+}
+
+table { 
+  border-collapse: collapse; 
+}
+
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+th { 
+  background: #333; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: center; 
+}
 
 img {
 max-width: 100%;
@@ -107,7 +133,8 @@ function toggleMajors() {
     else if ($("#majors").val() != "econ") {$("#econ").hide();}
     if ($("#majors").val() === "elec") {$("#elec").show();}
     else if ($("#majors").val() != "elec") {$("#elec").hide();}
-   else if ($("#majors").val() != "engl") {$("#engl").hide();}
+    if ($("#majors").val() === "engl") {$("#engl").show();}
+    else if ($("#majors").val() != "engl") {$("#engl").hide();}
     if ($("#majors").val() === "enviro") {$("#enviro").show();}
     else if ($("#majors").val() != "enviro") {$("#enviro").hide();}
     if ($("#majors").val() === "finance") {$("#finance").show();}
@@ -120,8 +147,6 @@ function toggleMajors() {
     else if ($("#majors").val() != "hist") {$("#hist").hide();}
     if ($("#majors").val() === "infosci") {$("#infosci").show();}
     else if ($("#majors").val() != "infosci") {$("#infosci").hide();}
-    if ($("#majors").val() === "infoSys") {$("#infoSys").show();}
-    else if ($("#majors").val() != "infoSys") {$("#infoSys").hide();}
     if ($("#majors").val() === "idst") {$("#idst").show();}
     else if ($("#majors").val() != "idst") {$("#idst").hide();}
     if ($("#majors").val() === "management") {$("#management").show();}
@@ -184,49 +209,49 @@ function toggleMajors() {
 <div>
         <label for="majors">Select the major you want to view: </label>
         <select name="majors" id="majors">
+		<option value="Blank">-- Select Major --</option>
                 <option value="acct">Accounting</option>
-                <option value="AmericanStudies">American Studies</option>
-                <option value="Anthropology">Anthropology</option>
-                <option value="AppliedPhysics">Applied Physics</option>
-                <option value="ArtHistory">Art History</option>
-                <option value="Biochemistry">Biochemistry</option>
-                <option value="Biology">Biology</option>
-                <option value="Chemistry">Chemistry</option>
-                <option value="ClassicalStudies">Classical Studies</option>
-                <option value="Comm">Communication Studies</option>
-                <option value="CompEngr">Computer Engineering</option>
-                <option value="CompSci">Computer Science</option>
-                <option value="Crime">Criminology</option>
-                <option value="Cyber">Cybersecurity</option>
-                <option value="Econ">Economics</option>
-                <option value="Elec">Electrical Engineering</option>
-                <option value="Engl">English</option>
-                <option value="Environment">Environmental Studies</option>
-                <option value="Finance">Finance</option>
-                <option value="French">French</option>
-                <option value="German">German</option>
-                <option value="Hist">History</option>
-                <option value="InfoSci">Information Science</option>
-                <option value="InfoSys">Information Systems</option>
-                <option value="Idst">Interdisciplinary Studies</option>
-                <option value="Management">Management</option>
-                <option value="Marketing">Marketing</option>
-                <option value="Math">Mathematics</option>
-                <option value="MathComp">Mathematics-Computational and Applied</option>
-                <option value="Music">Music</option>
-                <option value="Neuro">Neuroscience</option>
-                <option value="Philosophy">Philosophy</option>
-                <option value="PoliSci">Political Science</option>
-                <option value="Psychology">Psychology</option>
-                <option value="Social Work">Social Work</option>
-                <option value="Sociology">Sociology</option>
-                <option value="Spanish">Spanish</option>
-                <option value="Studio Art">Studio Art</option>
-                <option value="Theater">Theater</option>
-                <option value="Writing">Writing</option>
-        </select>
-        <br>
-</div>
+                <option value="amst">American Studies</option>
+                <option value="anth">Anthropology</option>
+                <option value="aphys">Applied Physics</option>
+                <option value="arthist">Art History</option>
+                <option value="biochem">Biochemistry</option>
+                <option value="bio">Biology (Cellular, Molecular and Physiological)</option>
+                <option value="chem">Chemistry</option>
+                <option value="clst">Classical Studies</option>
+                <option value="comm">Communication Studies</option>
+                <option value="compengr">Computer Engineering</option>
+                <option value="compsci">Computer Science</option>
+                <option value="crime">Criminology</option>
+                <option value="cyber">Cybersecurity</option>
+                <option value="econ">Economics</option>
+                <option value="elec">Electrical Engineering</option>
+                <option value="engl">English</option>
+                <option value="enviro">Environmental Studies</option>
+                <option value="finance">Finance</option>
+                <option value="french">French</option>
+                <option value="german">German</option>
+                <option value="hist">History</option>
+                <option value="infosci">Information Science</option>
+                <option value="idst">Interdisciplinary Studies</option>
+                <option value="management">Management</option>
+                <option value="marketing">Marketing</option>
+                <option value="math">Mathematics</option>
+                <option value="mathcomp">Mathematics-Computational and Applied</option>
+                <option value="music">Music (Creative Studies concentration)</option>
+                <option value="neuro">Neuroscience</option>
+                <option value="phil">Philosophy (Arts concentration)</option>
+                <option value="polisci">Political Science</option>
+                <option value="psych">Psychology (Arts concentration)</option>
+                <option value="social">Social Work</option>
+                <option value="socl">Sociology</option>
+                <option value="spanish">Spanish</option>
+                <option value="studioart">Studio Art</option>
+                <option value="theater1">Theater (Acting concentration)</option>
+                <option value="writing">Writing</option>
+</select>
+</div><br>
+
 
 <div id="acct"><br>
         <table>
@@ -256,17 +281,1122 @@ $conn-> close();
 ?> 
 </table>
 </div>
+
+<div id="amst"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from americanstudies";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+		echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="anth"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from anthropology";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="aphys"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from appliedphysics";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="arthist"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from arthistory";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="biochem"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from biochem";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="bio"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from biology";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="chem"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from chemistry";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="clst"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from classicalstudies";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="comm"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from communications";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="compengr"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from compengr";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="compsci"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from compsci";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="crime"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from criminology";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="cyber"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from cybersecurity";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="econ"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from econ";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="elec"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from electricalengr";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="engl"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from english";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="enviro"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail envrstudies";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="finance"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from finance";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="french"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from french";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="german"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from german";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="hist"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from history";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="infosci"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from infosci";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="management"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from management";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="marketing"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from marketing";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="math"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from math";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="mathcomp"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from mathcomp";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="music"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from music";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="neuro"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from neuroscience";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="phil"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from philosophy1";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="polisci"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from polisci";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="psych"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from psych";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="social"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from socialwork";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="socl"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from sociology";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="spanish"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from spanish";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="studioart"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from studioart";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="theater1"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from theater1";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+<div id="writing"><br>
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from writing";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+</div>
+
+
 <button name="submit"  id="sumbit" type="button">Submit</button>
 
 <p>Total credits in this major: </p>
 <span id="result"></span>
-<?php
-if(!empty($_POST['check_list'])) {
-    foreach($_POST['check_list'] as $check) {
-            echo $check;
-    }
-}
-?>
 
 </body>
 </html>
