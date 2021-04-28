@@ -13,7 +13,8 @@ body {
   margin:0;
   padding:0;
   font-family: sans-serif;
-  background: #cfd4d4;
+  background: rgb(255,255,255);
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(203,252,255,1) 100%);
 }
 
 table { 
@@ -91,6 +92,14 @@ body {
 .topnav a.active {
   background-color: #4CAF50;
   color: white;
+}
+
+select {
+  height: 35px;
+}
+
+div.b {
+  font-size: 125%;
 }
 
 </style>
@@ -215,6 +224,7 @@ function toggleMajors() {
 
 
 <h1>Courses for Majors</h1>
+<div class="b">
 <p>In this section, you can view the courses you need to take for your major. Select your major from the dropdown list to view.</p>
 <p><b>NOTE:</b> Courses for majors are based on the 2020-2021 student handbook. If your entry into CNU was earlier, 
 there may be some changes. Schedule your classes according to the student handbook of you entry 
@@ -223,7 +233,8 @@ be found in the Resources section.</p>
 
 
 <div>
-        <label for="majors">Select the major you want to view: </label>
+	<p>Select the major you want to view: </p>
+        <label for="majors"></label>
         <select name="majors" id="majors">
 		<option value="Blank">-- Select Major --</option>
                 <option value="acct">Accounting</option>
@@ -267,6 +278,7 @@ be found in the Resources section.</p>
                 <option value="writing">Writing</option>
 </select>
 </div><br>
+</div>
 
 <div id="acct"><br>
 	<table>

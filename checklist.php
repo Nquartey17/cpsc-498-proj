@@ -1,3 +1,4 @@
+
 <?php include('include/config.php'); ?>
 <!DOCTYPE html>
 <html>
@@ -14,6 +15,9 @@ body {
   margin:0;
   padding:0;
   font-family: sans-serif;
+  background: rgb(255,255,255);
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(203,252,255,1) 100%);
+
 }
 
 table { 
@@ -23,6 +27,10 @@ table {
 tr:nth-of-type(odd) { 
   background: #eee; 
 }
+tr:nth-of-type(even) { 
+  background: #fff; 
+}
+
 th { 
   background: #333; 
   color: white; 
@@ -86,6 +94,41 @@ border-collapse: collapse;
 td {
 text-align: center;
 }
+
+div.b {
+  font-size: 125%;
+}
+
+select {
+  height: 35px;
+}
+
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #fff6af;
+	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+	background-color:#ffec64;
+	border-radius:6px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+	background-color:#ffab23;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -205,9 +248,11 @@ function toggleMajors() {
 
 <h1>Course Checklist</h1>
 
-
-<div>
-        <label for="majors">Select the major you want to view: </label>
+<div class="b">
+	<p>In this section, you can select the courses you've completed to see how many credits 
+	you have under a specific major</p>
+	<p>Select the major you want to view: </p>
+        <label for="majors"></label>
         <select name="majors" id="majors">
 		<option value="Blank">-- Select Major --</option>
                 <option value="acct">Accounting</option>
@@ -252,8 +297,8 @@ function toggleMajors() {
 </select>
 </div><br>
 
-
 <div id="acct"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -268,21 +313,33 @@ $result = $conn-> query($sql);
 
 if ($result-> num_rows > 0) {
         while ($row = $result-> fetch_assoc()) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
         }
         echo "</table>";
 }
 else {
         echo "0 result";
 }
-
-
 $conn-> close();
+
+
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
+
 <div id="amst"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -301,7 +358,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-		echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+		echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+	}
         echo "</table>";
 }
 else {
@@ -310,9 +368,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit1">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit1'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="anth"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -331,7 +400,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -340,9 +410,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit2">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit2'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="aphys"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -361,7 +442,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -370,9 +452,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit3">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit3'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="arthist"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -391,7 +484,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -400,9 +494,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit4">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit4'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="biochem"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -421,7 +526,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -430,9 +536,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit5">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit5'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="bio"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -451,7 +568,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -460,9 +578,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit6">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit6'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="chem"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -481,7 +610,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -490,9 +620,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit7">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit7'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="clst"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -511,7 +652,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -520,9 +662,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit8">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit8'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="comm"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -541,7 +694,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -550,9 +704,21 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit9">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit9'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
+
 <div id="compengr"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -571,7 +737,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -580,9 +747,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit10">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit10'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="compsci"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -601,7 +779,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -610,9 +789,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit11">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit11'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="crime"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -631,7 +821,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -640,9 +831,21 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit12">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit12'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
+
 <div id="cyber"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -661,7 +864,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -670,9 +874,21 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit13">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit13'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
+
 <div id="econ"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -691,7 +907,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -700,9 +917,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit14">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit14'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="elec"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -721,7 +949,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -730,9 +959,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit15">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit15'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="engl"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -751,7 +991,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -760,9 +1001,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit16">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit16'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="enviro"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -776,12 +1028,13 @@ if (!$conn) {
         die("Connection failed:". mysqli_connect_error());
 } 
 
-$sql = "SELECT majorname, prereqs, credits, passfail envrstudies";
+$sql = "SELECT majorname, prereqs, credits, passfail from envrstudies";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -790,9 +1043,21 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit17">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit17'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
+
 <div id="finance"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -811,7 +1076,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -820,9 +1086,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit18">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit18'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="french"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -841,7 +1118,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -850,9 +1128,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit19">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit19'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="german"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -871,7 +1160,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -880,9 +1170,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit20">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit20'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="hist"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -901,7 +1202,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -910,9 +1212,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit21">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit21'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="infosci"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -931,7 +1244,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -940,9 +1254,62 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit22">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit22'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
+</div>
+
+<div id="idst"><br>
+<form method="post" action="">
+        <table>
+         <tr>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Completed</th>
+         </tr>
+<?php 
+
+$conn = mysqli_connect("aws-cnust.cofzpvijmwpq.us-east-1.rds.amazonaws.com","admin","NKQ6219!","majors", 3306 );
+if (!$conn) {
+        die("Connection failed:". mysqli_connect_error());
+} 
+
+$sql = "SELECT majorname, prereqs, credits, passfail from idstudies";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
+        echo "</table>";
+}
+else {
+        echo "0 result";
+}
+mysqli_close($conn);
+?> 
+</table>
+<input type="submit" class="myButton" value="Submit" name="submit23">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit23'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="management"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -961,7 +1328,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -970,9 +1338,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit24">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit24'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="marketing"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -991,7 +1370,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -1000,9 +1380,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit25">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit25'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="math"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -1021,7 +1412,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -1030,9 +1422,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit26">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit26'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="mathcomp"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -1051,7 +1454,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -1060,9 +1464,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit27">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit27'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="music"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -1081,7 +1496,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -1090,9 +1506,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit28">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit28'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="neuro"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -1111,7 +1538,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -1120,9 +1548,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit29">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit29'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="phil"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -1141,7 +1580,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -1150,9 +1590,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit30">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit30'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="polisci"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -1171,7 +1622,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -1180,9 +1632,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit31">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit31'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="psych"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -1201,7 +1664,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -1210,9 +1674,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit32">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit32'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="social"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -1231,7 +1706,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -1240,9 +1716,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit33">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit33'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="socl"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -1261,7 +1748,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -1270,9 +1758,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit34">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit34'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="spanish"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -1291,7 +1790,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -1300,9 +1800,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit36">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit36'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="studioart"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -1321,7 +1832,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -1330,9 +1842,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit37">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit37'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="theater1"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -1351,7 +1874,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -1360,9 +1884,20 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit38">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit38'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
 <div id="writing"><br>
+<form method="post" action="">
         <table>
          <tr>
           <th>Name</th>
@@ -1381,7 +1916,8 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' [".$row['ID']."]'></td></tr>";        }
+                echo "<tr><td>". $row["majorname"] ."</td><td>". $row["credits"] ."</td><td><input type='checkbox' name='check_list[]' value= " . $row["credits"] . " [".$row['ID']."]'></td></tr>";
+        }
         echo "</table>";
 }
 else {
@@ -1390,12 +1926,18 @@ else {
 mysqli_close($conn);
 ?> 
 </table>
+<input type="submit" class="myButton" value="Submit" name="submit39">
+
+<?php
+$sum = 0;
+if (isset($_POST['submit39'])) {
+    $sum = array_sum($_POST['check_list']);
+    echo "<br>Total credits in this major: ".$sum;
+}
+?>
+</form>
 </div>
 
-
-<button name="submit"  id="sumbit" type="button">Submit</button>
-
-<p>Total credits in this major: </p>
 <span id="result"></span>
 
 </body>

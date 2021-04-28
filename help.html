@@ -20,6 +20,8 @@ height: auto;
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  background: rgb(255,255,255);
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(203,252,255,1) 100%);
 }
 
 .topnav {
@@ -69,10 +71,12 @@ th, td {
   padding: 16px;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+tr:nth-of-type(odd) { 
+  background: #eee; 
 }
-
+tr:nth-of-type(even) { 
+  background: #fff; 
+}
 </style>
 
 <div class="header">
@@ -200,7 +204,7 @@ If you see this message; "NOTE: The students can select the amount of credits
 desired for this course ranging from 1-(3 or 6) credits," you should talk to your core 
 advisor about how many credits to take for the course.
 
-Finally, it's important to note that most courses that have the letter "L" next to them 
+Finally, it's important to note that <b>most</b> courses that have the letter "L" next to them 
 are labs that <b><i>must</i></b> be taken along with the course of the same number. For example 
 CPSC 150 must be taken with CPSC 150L, they cannot be taken during different semesters.</p> 
 </p>
@@ -216,17 +220,21 @@ You can view more about this in CNU Live's Catalog Entries</p>
 your GPA. What that means is if you choose to pass fail a class, as long as you earn a 
 D- or higher in the course, you will earn the credits for the class and the grade will not 
 hurt your GPA. If you fail the class, you won't earn the credits and the grade won't 
-effect your GPA. It's important to note that to pass/fail a class, you must meet two 
+effect your GPA. It's important to note that to pass/fail a class, you must meet these 
 requirements:
 <ol>
   <li>You must have 60 or more overall credits</li>
   <li>The course selected cannot be required under your major</li>
+  <li>GPA must be above 2.00</li>
 </ol>
 If "No" is listed under that pass fail option, it means that the course is required under the 
 major you've selected so you cannot pass/fail the class no matter what. If "Possibly" is listed 
 under the Pass/Fail option, it means that there is a chance you could pass/fail the class 
 as long as you've met another requirement. Most courses that have "Possibly" are electives, 
-so if meet the elective requirements, you can pass/fail the class.<br><br>
+so if meet the elective requirements, you can pass/fail the class. Also note that the options 
+of "No" and "Possibly" are listed for the specific major you've selected. You can pass/fail 
+any other class is not listed under your major as long as you meet the pass/fail requirements 
+and the course requirements<br><br>
 
 For example, if you are a computer science major and you have met the three electives requirement 
 by taking CPSC 425, CPSC 470, and CPSC 440, then you can pass/fail an elective that is 
@@ -235,6 +243,10 @@ courses have possibly listed under the pass/fail option for them.
 </p>
 
 <h2>Checklist</h2>
+<p>The checklist is the last major feature on this website. It's purpose is to help students 
+keep track of how many credits they have under their major. Just select all the courses that 
+you've taken that are listed, and the total amount of credits will be displayed at the bottom
+</p>
 </body>
 </html>
 

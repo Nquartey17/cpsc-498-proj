@@ -11,6 +11,10 @@ max-width: 100%;
 height: auto;
 }
 
+html {
+    height: 100%;
+}
+
 .header {
   background: #133c8b;
   height: auto;
@@ -20,6 +24,9 @@ height: auto;
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  background-repeat: no-repeat;
 }
 
 .topnav {
@@ -45,6 +52,47 @@ body {
 .topnav a.active {
   background-color: #4CAF50;
   color: white;
+}
+
+.wrapper {
+  background-color: lightgrey;
+  width: 500px;
+  border: 5px solid black;
+  padding: 50px;
+  margin: auto;
+  text-align: center;
+}
+
+div.b {
+  font-size: 125%;
+}
+
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+	background-color:#007dc1;
+	border-radius:3px;
+	border:1px solid #124d77;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+	background-color:#0061a7;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+div.c {
+  color: green;
 }
 
 
@@ -88,8 +136,10 @@ function finalCalc() {
 	document.getElementById("result").innerHTML = rounded; }
 	
 	else {
-	document.getElementById("result").innerHTML = "Please make sure all values range from 0-100";
+	alert("Please make sure all values range from 0-100");
+	return false;
 	}
+
 	}
 }
 
@@ -119,25 +169,28 @@ function checkTextField(field) {
 
 
 <body>
+<br>
 <div class="wrapper">
 
 	<h1>Final Grade Calculator</h1>
 
-	<div class="currgrade">Insert your current grade</div>
-	<input id="yourgrade" type="number" min="0" max="100" oninput="this.value = Math.abs(this.value)"/>
+	<div class="b">Insert your current grade</div>
+	<input id="yourgrade" type="number" oninput="this.value = Math.abs(this.value)"/><br>
 	
-	<div class="desiredgrade">Insert the grade you want in the class</div>
-	<input id="desgrade" type="number" min="0" max="100" oninput="this.value = Math.abs(this.value)"/>
+	<div class="b">Insert the grade you want in the class</div>
+	<input id="desgrade" type="number" oninput="this.value = Math.abs(this.value)"/><br>
 
-	<div class="finalpercent">How much percent is your final grade worth?</div>
-	<input id="finalgrade" type="number" min="0" max="100" oninput="this.value = Math.abs(this.value)"/>
-	<br>
+	<div class="b">How much percent is your final grade worth?</div>
+	<input id="finalgrade" type="number" oninput="this.value = Math.abs(this.value)"/>
+	<br><br>
 
-	<input id="submitbutton" type="button" value="Calculate final" onClick="finalCalc()"/>
+	<input id="submitbutton" class="myButton" type="button" value="Calculate final" onClick="finalCalc()"/>
 
+	<div class="b">
 	<p>The grade you need is on the final is : <br>
-	<span id = "result"></span>
+	<div class="c"><span id = "result"></span></div>
 	</p>
+	</div>
 </div>
 </body>
 </html>

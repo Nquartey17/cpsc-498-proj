@@ -180,8 +180,8 @@ var g6;
 var g7;
 var g8;
 var element = 0;
+var check = false;
 var nullCheck = false; 
-var check = true;
 
 Agrade = document.getElementById("Agrade");
 Aminus1 = document.getElementById("Amgrade1");
@@ -251,6 +251,14 @@ function Basic(element, quantity) {
 		else if (element <= 59) {return F * quantity};		
 }
 
+function valCheck(a, b) {
+	if (a >= 100 || a <= 0 || a >= b) {
+	check = false;
+	}
+	else {
+		check = true;
+	}
+}
 
 function save() {
 Agrade = document.getElementById("Agrade").value;
@@ -266,8 +274,8 @@ Cplus1 = document.getElementById("Cpgrade1").value;
 Cplus2 = document.getElementById("Cpgrade2").value;
 C1 = document.getElementById("Cgrade1").value;
 C2 = document.getElementById("Cgrade2").value;
-Cminus1 = document.getElementById("Cmgrade1").value;
-Cminus2 = document.getElementById("Cmgrade2").value;
+Cminus1 = document.getElementById("Dmgrade1").value;
+Cminus2 = document.getElementById("Dmgrade2").value;
 Dplus1 = document.getElementById("Dpgrade1").value;
 Dplus2 = document.getElementById("Dpgrade2").value;
 D1 = document.getElementById("Dgrade1").value;
@@ -275,36 +283,17 @@ D2 = document.getElementById("Dgrade2").value;
 Dminus1 = document.getElementById("Dmgrade1").value;
 Dminus2 = document.getElementById("Dmgrade2").value;
 Fgrade = document.getElementById("Fgrade").value;
+good = false;
 
-Ap1 = parseFloat(Agrade); Ap2 = parseFloat(Aminus1); Ap3 = parseFloat(Aminus2);
-Bp1 = parseFloat(Bplus1); Bp2 = parseFloat(Bplus2); Bp3 = parseFloat(B1);
-Bp4 = parseFloat(B2); Bp5 = parseFloat(Bminus1); Bp6 = parseFloat(Bminus2);
-Cp1 = parseFloat(Cplus1); Cp2 = parseFloat(Cplus2); Cp3 = parseFloat(C1);
-Cp4 = parseFloat(C2); Cp5 = parseFloat(Cminus1); Cp6 = parseFloat(Cminus2);
-Dp1 = parseFloat(Dplus1); Dp2 = parseFloat(Dplus2); Dp3 = parseFloat(D1);
-Dp4 = parseFloat(D2); Dp5 = parseFloat(Dminus1); Dp6 = parseFloat(Dminus2);
-Fp1 = parseFloat(Fgrade);
 
-if (Agrade >= 100 || Aminus1 >= 100 || Aminus2 >= 100 || Bplus1 >= 100 || Bplus2 >= 100 || 
-B1 >= 100 || B2 >= 100 || Bminus1 >= 100 || Bminus2 >= 100 || Cplus1 >= 100 || 
-Cplus2 >= 100 || C1 >= 100 || C2 >= 100 || Cminus1 >= 100 || Cminus2 >= 100 || 
-Dplus1 >= 100 || Dplus2 >= 100 || D1 >= 100 || D2 >= 100 || Dminus1 >= 100 || 
-Dminus2 >= 100 || Fgrade >= 100) {
-	alert("Please make sure all values range from 0-100");
-	check = false;
+valCheck(Agrade, 100);
+valCheck(Amin
+valCheck(Fgrade, Dminus2);
+if (check == false) {
+	document.getElementById("customValues").innerHTML = "Please make sure all values do not equal or overlap each other";
 }
-
-if (Ap2 >= Ap1 || Ap3 >= Ap2 || Bp1 >= Ap3 || Bp2 >= Bp1 || Bp3 >= Bp2 || 
-Bp4 >= Bp3 || Bp5 >= Bp4 || Bp6 >= Bp5 || Cp1 >= Bp6 || Cp2 >= Cp1 || Cp3 >= Cp2 || 
-Cp4 >= Cp3 || Cp5 >= Cp4 || Cp6 >= Cp5 || Dp1 >= Cp6 || Dp2 >= Dp1 || Dp3 >= Dp2 || 
-Dp4 >= Dp3 || Dp5 >= Dp4 || Dp6 >= Dp5 || Fp1 >= Dp6) {
-	alert("Please make sure all values are not equal or overlap each other");
-	check = false;
-}
-
 else {
 	document.getElementById("customValues").innerHTML = "All values have been saved";
-	check = true;
 }
 
 
@@ -314,12 +303,8 @@ if(document.getElementById("Custom").checked) {
 	C1 == "" || C2 == "" || Cminus2 == "" || Cminus1 == "" || Dplus2 == "" || Dplus1 == "" || 
 	D1 == "" || D2 == "" || Dminus2 == "" || Dminus1 == "" || Fgrade == "") {
 		alert("you have values that are empty");
-		check = false;
+		return false;
 	}
-else {
-check = true;
-}
-
 }
 
 }
@@ -339,7 +324,7 @@ function Custom(element, quantity) {
                 else if (element <= parseInt(Fgrade)) {return F * quantity}
 		else {
 		alert("There is a grade entered that is not in the range of values");
-		check = false;
+		return false;
 		}
 
 ;}
@@ -1143,6 +1128,7 @@ g8 = Basic(element8.value, quantity8.value);
 
 if(document.getElementById("Custom").checked) {
 
+
 element1 = document.getElementById("grade1");
 element2 = document.getElementById("grade2");
 element3 = document.getElementById("grade3");
@@ -1258,34 +1244,104 @@ quantity3.value <= 0 || quantity3.value > 6 || quantity4.value <= 0 || quantity4
         return false;
 }
 
-g1 = Custom(element1.value, quantity1.value);
-g2 = Custom(element2.value, quantity2.value);
-g3 = Custom(element3.value, quantity3.value);
-g4 = Custom(element4.value, quantity4.value);
+g1 = Custom(element1.valuty3.value);
+g4 = Basic(element4.value, quantity4.value);
+g5 = Basic(element5.value, quantity5.value);
+g6 = Basic(element6.value, quantity6.value);
+g7 = Basic(element7.value, quantity7.value);
+g8 = Basic(element8.value, quantity8.value);
 }
 
-if ($("#classes").val() === "5") {
 
-if(element1.value == "" || element2.value == "" || element3.value == "" || element4.value == "" || 
-element5.value == "") {
+}
+
+if(document.getElementById("Custom").checked) {
+
+
+element1 = document.getElementById("grade1");
+element2 = document.getElementById("grade2");
+element3 = document.getElementById("grade3");
+element4 = document.getElementById("grade4");
+element5 = document.getElementById("grade5");
+element6 = document.getElementById("grade6");
+element7 = document.getElementById("grade7");
+element8 = document.getElementById("grade8");
+
+quantity1 = document.getElementById("quantity1");
+quantity2 = document.getElementById("quantity2");
+quantity3 = document.getElementById("quantity3");
+quantity4 = document.getElementById("quantity4");
+quantity5 = document.getElementById("quantity5");
+quantity6 = document.getElementById("quantity6");
+quantity7 = document.getElementById("quantity7");
+quantity8 = document.getElementById("quantity8");
+
+
+if ($("#classes").val() === "1") {
+
+if(element1.value == "") {
         alert("Grades cannot be empty");
         return false;
 }
-if(quantity1.value == "" || quantity2.value == "" || quantity3.value == "" || quantity4.value ==""|| 
-quantity5.value == "") {
+if(quantity1.value == "") {
+        alert("Credits cannot be empty");
+        return false;
+}
+if(element1.value <= 0 || element1.value > 100) {
+        alert("Grades must range from 0-100");
+        return false;
+}
+
+if(quantity1.value <= 0 || quantity1.value > 6) {
+        alert("Credits must range from 1-6");
+        return false;
+}
+
+g1 = Custom(element1.value, quantity1.value);
+}
+
+if ($("#classes").val() === "2") {
+
+if(element1.value == "" || element2.value == "") {
+        alert("Grades cannot be empty");
+        return false;
+}
+if(quantity1.value == "" || quantity2.value == "") {
+        alert("Credits cannot be empty");
+        return false;
+}
+if(element1.value <= 0 || element1.value > 100 || element2.value <= 0 || element2.value > 100) {
+        alert("Grades must range from 0-100");
+        return false;
+}
+
+if(quantity1.value <= 0 || quantity1.value > 6 || quantity2.value <= 0 || quantity2.value > 6) {
+        alert("Credits must range from 1-6");
+        return false;
+}
+
+g1 = Custom(element1.value, quantity1.value);
+g2 = Custom(element2.value, quantity2.value);
+}
+
+if ($("#classes").val() === "3") {
+
+if(element1.value == "" || element2.value == "" || element3.value == "") {
+        alert("Grades cannot be empty");
+        return false;
+}
+if(quantity1.value == "" || quantity2.value == "" || quantity3.value == "") {
         alert("Credits cannot be empty");
         return false;
 }
 if(element1.value <= 0 || element1.value > 100 || element2.value <= 0 || element2.value > 100 || 
-element3.value <= 0 || element3.value > 100 || element4.value <= 0 || element4.value > 100 || 
-element5.value <= 0 || element5.value > 100) {
+element3.value <= 0 || element3.value > 100) {
         alert("Grades must range from 0-100");
         return false;
 }
 
 if(quantity1.value <= 0 || quantity1.value > 6 || quantity2.value <= 0 || quantity2.value > 6 || 
-quantity3.value <= 0 || quantity3.value > 6 || quantity4.value <= 0 || quantity4.value > 6 || 
-quantity5.value <= 0 || quantity5.value > 6) {
+quantity3.value <= 0 || quantity3.value > 6) {
         alert("Credits must range from 1-6");
         return false;
 }
@@ -1293,589 +1349,28 @@ quantity5.value <= 0 || quantity5.value > 6) {
 g1 = Custom(element1.value, quantity1.value);
 g2 = Custom(element2.value, quantity2.value);
 g3 = Custom(element3.value, quantity3.value);
-g4 = Custom(element4.value, quantity4.value);
-g5 = Custom(element5.value, quantity5.value);
 }
 
-if ($("#classes").val() === "6") {
+if ($("#classes").val() === "4") {
 
-if(element1.value == "" || element2.value == "" || element3.value == "" || element4.value == "" || 
-element5.value == "" || element6.value == "") {
+if(element1.value == "" || element2.value == "" || element3.value == "" || element4.value == "") {
         alert("Grades cannot be empty");
         return false;
 }
-if(quantity1.value == "" || quantity2.value == "" || quantity3.value == "" || quantity4.value == ""
-|| element5.value == "" || element6.value == "") {
+if(quantity1.value == "" || quantity2.value == "" || quantity3.value == "" || quantity4.value =="") {
         alert("Credits cannot be empty");
         return false;
 }
 if(element1.value <= 0 || element1.value > 100 || element2.value <= 0 || element2.value > 100 || 
-element3.value <= 0 || element3.value > 100 || element4.value <= 0 || element4.value > 100 || 
-element5.value <= 0 || element5.value > 100 || element6.value <= 0 || element6.value > 100) {
+element3.value <= 0 || element3.value > 100 || element4.value <= 0 || element4.value > 100) {
         alert("Grades must range from 0-100");
         return false;
 }
 
-if(quantity1.value <= 0 || quantity1.value > 6 || quantity2.value <= 0 || quantity2.value > 6 ||
-quantity3.value <= 0 || quantity3.value > 6 || quantity4.value <= 0 || quantity4.value > 6 || 
-quantity5.value <= 0 || quantity5.value > 6 || quantity6.value <= 0 || quantity6.value > 6) {
+if(quantity1.value <= 0 || quantity1.value > 6 || quantity2.value <= 0 || quantity2.value > 6 || 
+quantity3.value <= 0 || quantity3.value > 6 || quantity4.value <= 0 || quantity4.value > 6) {
         alert("Credits must range from 1-6");
         return false;
 }
 
-g1 = Custom(element1.value, quantity1.value);
-g2 = Custom(element2.value, quantity2.value);
-g3 = Custom(element3.value, quantity3.value);
-g4 = Custom(element4.value, quantity4.value);
-g5 = Custom(element5.value, quantity5.value);
-g6 = Custom(element6.value, quantity6.value);
-}
-
-if ($("#classes").val() === "7") {
-
-if(element1.value == "" || element2.value == "" || element3.value == "" || element4.value == "" ||
-element5.value == "" || element6.value == "" || element7.value == "") {
-        alert("Grades cannot be empty");
-        return false;
-}
-if(quantity1.value == "" || quantity2.value == "" || quantity3.value == "" || quantity4.value == ""
-|| element5.value == "" || element6.value == "" || element7.value == "") {
-        alert("Credits cannot be empty");
-        return false;
-}
-if(element1.value <= 0 || element1.value > 100 || element2.value <= 0 || element2.value > 100 ||
-element3.value <= 0 || element3.value > 100 || element4.value <= 0 || element4.value > 100 ||
-element5.value <= 0 || element5.value > 100 || element6.value <= 0 || element6.value > 100 || 
-element7.value <= 0 || element7.value > 100) {
-        alert("Grades must range from 0-100");
-        return false;
-}
-
-if(quantity1.value <= 0 || quantity1.value > 6 || quantity2.value <= 0 || quantity2.value > 6 ||
-quantity3.value <= 0 || quantity3.value > 6 || quantity4.value <= 0 || quantity4.value > 6 ||
-quantity5.value <= 0 || quantity5.value > 6 || quantity6.value <= 0 || quantity6.value > 6 || 
-quantity7.value <= 0 || quantity7.value > 6) {
-        alert("Credits must range from 1-6");
-        return false;
-}
-
-g1 = Custom(element1.value, quantity1.value);
-g2 = Custom(element2.value, quantity2.value);
-g3 = Custom(element3.value, quantity3.value);
-g4 = Custom(element4.value, quantity4.value);
-g5 = Custom(element5.value, quantity5.value);
-g6 = Custom(element6.value, quantity6.value);
-g7 = Custom(element7.value, quantity7.value);
-}
-
-if ($("#classes").val() === "8") {
-
-if(element1.value == "" || element2.value == "" || element3.value == "" || element4.value == "" ||
-element5.value == "" || element6.value == "" || element7.value == "" || element8.value == "") {
-        alert("Grades cannot be empty");
-        return false;
-}
-if(quantity1.value == "" || quantity2.value == "" || quantity3.value == "" || quantity4.value == ""
-|| element5.value == "" || element6.value == "" || element7.value == "" || element8.value == "") {
-        alert("Credits cannot be empty");
-        return false;
-}
-if(element1.value <= 0 || element1.value > 100 || element2.value <= 0 || element2.value > 100 ||
-element3.value <= 0 || element3.value > 100 || element4.value <= 0 || element4.value > 100 ||
-element5.value <= 0 || element5.value > 100 || element6.value <= 0 || element6.value > 100 || 
-element7.value <= 0 || element7.value > 100 || element8.value <= 0 || element8.value > 100) {
-        alert("Grades must range from 0-100");
-        return false;
-}
-
-if(quantity1.value <= 0 || quantity1.value > 6 || quantity2.value <= 0 || quantity2.value > 6 ||
-quantity3.value <= 0 || quantity3.value > 6 || quantity4.value <= 0 || quantity4.value > 6 ||
-quantity5.value <= 0 || quantity5.value > 6 || quantity6.value <= 0 || quantity6.value > 6 || 
-quantity7.value <= 0 || quantity7.value > 6 || quantity8.value <= 0 || quantity8.value > 6) {
-        alert("Credits must range from 1-6");
-        return false;
-}
-
-g1 = Custom(element1.value, quantity1.value);
-g2 = Custom(element2.value, quantity2.value);
-g3 = Custom(element3.value, quantity3.value);
-g4 = Custom(element4.value, quantity4.value);
-g5 = Custom(element5.value, quantity5.value);
-g6 = Custom(element6.value, quantity6.value);
-g7 = Custom(element7.value, quantity7.value);
-g8 = Custom(element8.value, quantity8.value);
-}
-
-
-}
-
-if ($("#classes").val() === "1") {
-credits = parseInt(quantity1.value);
-total = g1;
-}
-
-if ($("#classes").val() === "2") {
-credits = parseInt(quantity1.value) + parseInt(quantity2.value);
-total = g1 + g2;
-}
-
-if ($("#classes").val() === "3") {
-credits = parseInt(quantity1.value) + parseInt(quantity2.value) + parseInt(quantity3.value);
-total = g1 + g2 + g3;
-}
-
-if ($("#classes").val() === "4") {
-credits = parseInt(quantity1.value) + parseInt(quantity2.value) + parseInt(quantity3.value) + parseInt(quantity4.value);
-total = g1 + g2 + g3 + g4;
-}
-
-if ($("#classes").val() === "5") {
-credits = parseInt(quantity1.value) + parseInt(quantity2.value) + parseInt(quantity3.value) + parseInt(quantity4.value) + 
-parseInt(quantity5.value);
-total = g1 + g2 + g3 + g4 + g5;
-}
-
-if ($("#classes").val() === "6") {
-credits = parseInt(quantity1.value) + parseInt(quantity2.value) + parseInt(quantity3.value) + parseInt(quantity4.value) + 
-parseInt(quantity5.value) + parseInt(quantity6.value);
-total = g1 + g2 + g3 + g4 + g5 + g6;
-}
-
-if ($("#classes").val() === "7") {
-credits = parseInt(quantity1.value) + parseInt(quantity2.value) + parseInt(quantity3.value) + parseInt(quantity4.value) + 
-parseInt(quantity5.value) + parseInt(quantity6.value) + parseInt(quantity7.value);
-total = g1 + g2 + g3 + g4 + g5 + g6 + g7;
-}
-
-if ($("#classes").val() === "8") {
-credits = parseInt(quantity1.value) + parseInt(quantity2.value) + parseInt(quantity3.value) + parseInt(quantity4.value) +
-parseInt(quantity5.value) + parseInt(quantity6.value) + parseInt(quantity7.value) + parseInt(quantity8.value);
-total = g1 + g2 + g3 + g4 + g5 + g6 + g7 + g8;
-}
-
-
-answer = total / credits;
-rounded = Math.round(answer * 100) / 100;
-if (check == true) {
-	document.getElementById("result").innerHTML = rounded;
-}
-else {
-	document.getElementById("result").innerHTML = "You need to fix the custom grading scale values for the grades to calculate properly";
-}
-
-}
-
-$(document).ready(function () {
-    toggleFields();
-    $("#classes").change(function () {
-        toggleFields();
-    });
-});
-
-
-function toggleFields() {
-    for(let i =1; i<= 8; i++) {
-        if ($("#classes").val() < i) {
-	    $("#group" + i).hide();
-	} else {
-	    $("#group" + i).show();
-	}
-    }
-}
-
-$(document).ready(function () {
-    toggleSemesters();
-    $("#semesters").change(function () {
-        toggleSemesters();
-    });
-});
-
-
-function toggleSemesters() {
-    for(let i =1; i<= 8; i++) {
-        if ($("#semesters").val() < i) {
-            $("#GPA" + i).hide();
-        } else {
-            $("#GPA" + i).show();
-        }
-    }
-}
-
-$(document).ready(function() {
-   $('input[type="radio"]').click(function() {
-       if($(this).attr('id') == 'Custom') {
-            $('#content').show();           
-       }
-       else {
-            $('#content').hide();   
-       }
-   });
-});
-
-function calculate() {
-gpa1 = document.getElementById("gpa1").value;
-gpa2 = document.getElementById("gpa2").value;
-gpa3 = document.getElementById("gpa3").value;
-gpa4 = document.getElementById("gpa4").value;
-gpa5 = document.getElementById("gpa5").value;
-gpa6 = document.getElementById("gpa6").value;
-gpa7 = document.getElementById("gpa7").value;
-gpa8 = document.getElementById("gpa8").value;
-
-if ($("#semesters").val() === "1") {
-if(gpa1 == "") {
-        alert("GPA cannot be empty");
-        return false;
-}
-ovrgpa = parseFloat(gpa1);
-result = ovrgpa / 1;
-finalgpa = Math.round(result * 100) / 100;}
-
-if ($("#semesters").val() === "2") {
-if(gpa1 == "" || gpa2 == "") {
-        alert("GPA cannot be empty");
-        return false;
-}
-ovrgpa = parseFloat(gpa1) + parseFloat(gpa2);
-result = ovrgpa / 2;
-finalgpa = Math.round(result * 100) / 100;
-}
-
-if ($("#semesters").val() === "3") {
-if(gpa1 == "" || gpa2 == "" || gpa3 == "") {
-        alert("GPA cannot be empty");
-        return false;
-}
-ovrgpa = parseFloat(gpa1) + parseFloat(gpa2) + parseFloat(gpa3);
-result = ovrgpa / 3;
-finalgpa = Math.round(result * 100) / 100;}
-
-if ($("#semesters").val() === "4") {
-if(gpa1 == "" || gpa2 == "" || gpa3 == "" || gpa4 == "") {
-        alert("GPA cannot be empty");
-        return false;
-}
-ovrgpa = parseFloat(gpa1) + parseFloat(gpa2) + parseFloat(gpa3) + parseFloat(gpa4);
-result = ovrgpa / 4;
-finalgpa = Math.round(result * 100) / 100;}
-
-if ($("#semesters").val() === "5") {
-if(gpa1 == "" || gpa2 == "" || gpa3 == "" || gpa4 == "" || gpa5 == "") {
-        alert("GPA cannot be empty");
-        return false;
-}
-ovrgpa = parseFloat(gpa1) + parseFloat(gpa2) + parseFloat(gpa3) + parseFloat(gpa4) + 
-parseFloat(gpa5);
-result = ovrgpa / 5;
-finalgpa = Math.round(result * 100) / 100;}
-
-if ($("#semesters").val() === "6") {
-if(gpa1 == "" || gpa2 == "" || gpa3 == "" || gpa4 == "" || gpa5 == "" ||
-gpa6 == "") {
-        alert("GPA cannot be empty");
-        return false;
-}
-ovrgpa = parseFloat(gpa1) + parseFloat(gpa2) + parseFloat(gpa3) + parseFloat(gpa4) +
-parseFloat(gpa5) + parseFloat(gpa6);
-result = ovrgpa / 6;
-finalgpa = Math.round(result * 100) / 100;}
-
-if ($("#semesters").val() === "7") {
-if(gpa1 == "" || gpa2 == "" || gpa3 == "" || gpa4 == "" || gpa5 == "" ||
-gpa6 == "" || gpa7 == "") {
-        alert("GPA cannot be empty");
-        return false;
-}
-ovrgpa = parseFloat(gpa1) + parseFloat(gpa2) + parseFloat(gpa3) + parseFloat(gpa4) +
-parseFloat(gpa5) + parseFloat(gpa6) + parseFloat(gpa7);
-result = ovrgpa / 7;
-finalgpa = Math.round(result * 100) / 100;}
-
-if ($("#semesters").val() === "8") {
-if(gpa1 == "" || gpa2 == "" || gpa3 == "" || gpa4 == "" || gpa5 == "" ||
-gpa6 == "" || gpa7 == "" ||gpa8 == "") {
-        alert("GPA cannot be empty");
-        return false;
-}
-ovrgpa = parseFloat(gpa1) + parseFloat(gpa2) + parseFloat(gpa3) + parseFloat(gpa4) +
-parseFloat(gpa5) + parseFloat(gpa6) + parseFloat(gpa7) + parseFloat(gpa8);
-result = ovrgpa / 8;
-finalgpa = Math.round(result * 100) / 100;}
-
-document.getElementById("ovrgpa").innerHTML = finalgpa;
-}
-
-</script>
-<body>
-<div class="header">
-<header>
-<img src="https://i.imgur.com/T2Xm082.jpg" alt="">
-</header>
-</div>
-
-  <div class="topnav">
-  <a href="index.html">Home</a>
-  <a href="finalgradecalc.html">Final Grade Calculator</a>
-  <a href="gpacalc.html">GPA Calculator</a>
-  <a href="index.php">Courses for majors</a>
-  <a href="checklist.php">Checklist</a>
-  <a href="resources.html">Resources</a>
-  <a href="help.html">Help</a>
-  </div>
-
-<br>
-<div class="wrapper">
-<h1>GPA Calculator</h1>
-
-<div class="b">
-        <p>Select your grading scale. Values for grading scales can be found in the 
-<a href="help.html">Help</a> section</p>
-        <input type="radio" id="CNU" name="scale" value="CNU" checked>
-        <label for="CNU">Default</label>
-        <input type="radio" id="Canadian" name="scale" value="Canadian">
-        <label for="Canadian">Canadian</label>
-        <input type="radio" id="Basic" name="scale" value="Basic">
-        <label for="Basic">Basic</label>
-        <input type="radio" id="Custom" name="scale" value="Custom">
-        <label for="Custom">Custom</label>
-	
-</div>
-<br>
-
-<div id="content" class="center">
-<table>
-  <tr>
-    <th>Grade</th>
-    <th>Upper</th>
-    <th>Lower</th> 
-  </tr>
-  <tr>
-    <td>A</td>
-    <td>100</td>
-    <td><input type="number" id="Agrade" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-  </tr>
-  <tr>
-    <td>A-</td>
-    <td><input type="number" id="Amgrade1" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-    <td><input type="number" id="Amgrade2" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-  </tr>
-  <tr>
-    <td>B+</td>
-    <td><input type="number" id="Bpgrade1" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-    <td><input type="number" id="Bpgrade2" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-  </tr>
-  <tr>
-    <td>B</td>
-    <td><input type="number" id="Bgrade1" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-    <td><input type="number" id="Bgrade2" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-  </tr>
-  <tr>
-    <td>B-</td>
-    <td><input type="number" id="Bmgrade1" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-    <td><input type="number" id="Bmgrade2" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-  </tr>
-  <tr>
-    <td>C+</td>
-    <td><input type="number" id="Cpgrade1" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-    <td><input type="number" id="Cpgrade2" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-  </tr>
-  <tr>
-    <td>C</td>
-    <td><input type="number" id="Cgrade1" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-    <td><input type="number" id="Cgrade2" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-  </tr>
-  <tr>
-    <td>C-</td>
-    <td><input type="number" id="Cmgrade1" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-    <td><input type="number" id="Cmgrade2" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-  </tr>
-  <tr>
-    <td>D+</td>
-    <td><input type="number" id="Dpgrade1" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-    <td><input type="number" id="Dpgrade2" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-  </tr>
-  <tr>
-    <td>D</td>
-    <td><input type="number" id="Dgrade1" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-    <td><input type="number" id="Dgrade2" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-  </tr>
-  <tr>
-    <td>D-</td>
-    <td><input type="number" id="Dmgrade1" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-    <td><input type="number" id="Dmgrade2" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-  </tr>
-  <tr>
-    <td>F</td>
-    <td><input type="number" id="Fgrade" min="1" max="100" oninput="this.value = Math.abs(this.value)"></td>
-    <td>0</td>
-  </tr>
-</table>
-
-<button id="submit" type="button" class="myButton2" onclick="save()">Save</button>
-<span id="customValues"></span>
-
-</div>
-
-<br>
-<div class="b">
-  <label for="class">How many classes are you taking?</label>
-  <select name="classes" id="classes">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-  </select>
-</div>
-<span id="display"></span>
-
-<br>
-
-<div class="b">
-<div id="group1">
-<label for="grade1">Enter your grade in class 1:</label>
-        <input type="number" id="grade1" name="grade1" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity1">Enter your credits for class 1:</label>
-        <input type="number" id="quantity1" name="quantity1" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-	
-</div>
-
-<div id="group2">
-
-        <label for="grade2">Enter your grade in class 2:</label>
-        <input type="number" id="grade2" name="grade2" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity2">Enter your credits for class 2:</label>
-        <input type="number" id="quantity2" name="quantity2" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-</div>
-
-<div id="group3">
-	<label for="grade3">Enter your grade in class 3:</label>
-        <input type="number" id="grade3" name="grade3" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity3">Enter your credits for class 3:</label>
-        <input type="number" id="quantity3" name="quantity3" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-</div>
-
-
-<div id="group4">
-	<label for="grade4">Enter your grade in class 4:</label>
-	<input type="number" id="grade4" name="grade4" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-	<label for="quantity4">Enter your credits for class 4:</label>
-	<input type="number" id="quantity4" name="quantity4" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-</div>
-
-<div id="group5">
-        <label for="grade5">Enter your grade in class 5:</label>
-        <input type="number" id="grade5" name="grade5" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity5">Enter your credits for class 5:</label>
-        <input type="number" id="quantity5" name="quantity5" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-</div>
-
-<div id="group6">
-        <label for="grade6">Enter your grade in class 6:</label>
-        <input type="number" id="grade6" name="grade6" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity6">Enter your credits for class 6:</label>
-        <input type="number" id="quantity6" name="quantity6" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-</div>
-
-<div id="group7">
-	<label for="grade7">Enter your grade in class 7:</label>
-        <input type="number" id="grade7" name="grade7" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity7">Enter your credits for class 7:</label>
-        <input type="number" id="quantity7" name="quantity7" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-
-</div>
-
-<div id="group8">
-
-        <label for="grade8">Enter your grade in class 8:</label>
-        <input type="number" id="grade8" name="grade8" min="0" max="100" oninput="this.value = Math.abs(this.value)"><br>
-        <label for="quantity8">Enter your credits for class 8:</label>
-        <input type="number" id="quantity8" name="quantity8" min="1" max="6" oninput="this.value = Math.abs(this.value)"><br><br>
-</div>
-
-        <button id="submit"type="button" class="myButton"  onclick="checked()">Calculate GPA</button>
-
-<p id="demo"></p>
-<p>GPA: </p>
-<div class="c"><span id="result"></span></div>
-</div>
-</div> 
-
-<br>
-<div class="wrapper">
-<h1>Overall GPA Calculator</h1>
-
-<div class="b">
-<div>
-  <label for="sem">How many semesters have you taken?</label>
-  <select name="semesters" id="semesters">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-  </select>
-</div>
-
-
-<div id="GPA1">
-<label for="gpa1">GPA 1:</label>
-        <input type="number" id="gpa1" name="gpa1" min="0" max="4" oninput="this.value = Math.abs(this.value)">
-</div>
-
-<div id="GPA2">
-<label for="gpa2">GPA 2:</label>
-        <input type="number" id="gpa2" name="gpa2" min="0" max="4" oninput="this.value = Math.abs(this.value)">
-</div>
-
-<div id="GPA3">
-<label for="gpa3">GPA 3:</label>
-        <input type="number" id="gpa3" name="gpa3" min="0" max="4" oninput="this.value = Math.abs(this.value)">
-</div>
-
-<div id="GPA4">
-<label for="gpa4">GPA 4:</label>
-        <input type="number" id="gpa4" name="gpa4" min="0" max="4" oninput="this.value = Math.abs(this.value)">
-</div>
-
-<div id="GPA5">
-<label for="gpa5">GPA 5:</label>
-        <input type="number" id="gpa5" name="gpa5" min="0" max="4" oninput="this.value = Math.abs(this.value)">
-</div>
-
-<div id="GPA6">
-<label for="gpa6">GPA 6:</label>
-        <input type="number" id="gpa6" name="gpa6" min="0" max="4" oninput="this.value = Math.abs(this.value)">
-</div>
-
-<div id="GPA7">
-<label for="gpa7">GPA 7:</label>
-        <input type="number" id="gpa7" name="gpa7" min="0" max="4" oninput="this.value = Math.abs(this.value)">
-</div>
-
-<div id="GPA8">
-<label for="gpa8">GPA 8:</label>
-        <input type="number" id="gpa8" name="gpa8" min="0" max="4" oninput="this.value = Math.abs(this.value)">
-</div>
-
-<br>
-<button id="submit"type="button" class="myButton" onclick="calculate()">Calculate GPA</button>
-<p>Overall GPA:</p>
-<div class="c"><span id="ovrgpa"></span></div>
-</div></div>
-<br><br><br><br>
-
-</body>
-</html>
-
+g1 = Custom(element1.valu

@@ -180,8 +180,8 @@ var g6;
 var g7;
 var g8;
 var element = 0;
+var check = false;
 var nullCheck = false; 
-var check = true;
 
 Agrade = document.getElementById("Agrade");
 Aminus1 = document.getElementById("Amgrade1");
@@ -251,6 +251,14 @@ function Basic(element, quantity) {
 		else if (element <= 59) {return F * quantity};		
 }
 
+function valCheck(a, b) {
+	if (a >= 100 || a <= 0 || a >= b) {
+	check = false;
+	}
+	else {
+		check = true;
+	}
+}
 
 function save() {
 Agrade = document.getElementById("Agrade").value;
@@ -266,8 +274,8 @@ Cplus1 = document.getElementById("Cpgrade1").value;
 Cplus2 = document.getElementById("Cpgrade2").value;
 C1 = document.getElementById("Cgrade1").value;
 C2 = document.getElementById("Cgrade2").value;
-Cminus1 = document.getElementById("Cmgrade1").value;
-Cminus2 = document.getElementById("Cmgrade2").value;
+Cminus1 = document.getElementById("Dmgrade1").value;
+Cminus2 = document.getElementById("Dmgrade2").value;
 Dplus1 = document.getElementById("Dpgrade1").value;
 Dplus2 = document.getElementById("Dpgrade2").value;
 D1 = document.getElementById("Dgrade1").value;
@@ -275,36 +283,17 @@ D2 = document.getElementById("Dgrade2").value;
 Dminus1 = document.getElementById("Dmgrade1").value;
 Dminus2 = document.getElementById("Dmgrade2").value;
 Fgrade = document.getElementById("Fgrade").value;
+good = false;
 
-Ap1 = parseFloat(Agrade); Ap2 = parseFloat(Aminus1); Ap3 = parseFloat(Aminus2);
-Bp1 = parseFloat(Bplus1); Bp2 = parseFloat(Bplus2); Bp3 = parseFloat(B1);
-Bp4 = parseFloat(B2); Bp5 = parseFloat(Bminus1); Bp6 = parseFloat(Bminus2);
-Cp1 = parseFloat(Cplus1); Cp2 = parseFloat(Cplus2); Cp3 = parseFloat(C1);
-Cp4 = parseFloat(C2); Cp5 = parseFloat(Cminus1); Cp6 = parseFloat(Cminus2);
-Dp1 = parseFloat(Dplus1); Dp2 = parseFloat(Dplus2); Dp3 = parseFloat(D1);
-Dp4 = parseFloat(D2); Dp5 = parseFloat(Dminus1); Dp6 = parseFloat(Dminus2);
-Fp1 = parseFloat(Fgrade);
 
-if (Agrade >= 100 || Aminus1 >= 100 || Aminus2 >= 100 || Bplus1 >= 100 || Bplus2 >= 100 || 
-B1 >= 100 || B2 >= 100 || Bminus1 >= 100 || Bminus2 >= 100 || Cplus1 >= 100 || 
-Cplus2 >= 100 || C1 >= 100 || C2 >= 100 || Cminus1 >= 100 || Cminus2 >= 100 || 
-Dplus1 >= 100 || Dplus2 >= 100 || D1 >= 100 || D2 >= 100 || Dminus1 >= 100 || 
-Dminus2 >= 100 || Fgrade >= 100) {
-	alert("Please make sure all values range from 0-100");
-	check = false;
+valCheck(Agrade, 100);
+valCheck(Amin
+valCheck(Fgrade, Dminus2);
+if (check == false) {
+	document.getElementById("customValues").innerHTML = "Please make sure all values do not equal or overlap each other";
 }
-
-if (Ap2 >= Ap1 || Ap3 >= Ap2 || Bp1 >= Ap3 || Bp2 >= Bp1 || Bp3 >= Bp2 || 
-Bp4 >= Bp3 || Bp5 >= Bp4 || Bp6 >= Bp5 || Cp1 >= Bp6 || Cp2 >= Cp1 || Cp3 >= Cp2 || 
-Cp4 >= Cp3 || Cp5 >= Cp4 || Cp6 >= Cp5 || Dp1 >= Cp6 || Dp2 >= Dp1 || Dp3 >= Dp2 || 
-Dp4 >= Dp3 || Dp5 >= Dp4 || Dp6 >= Dp5 || Fp1 >= Dp6) {
-	alert("Please make sure all values are not equal or overlap each other");
-	check = false;
-}
-
 else {
 	document.getElementById("customValues").innerHTML = "All values have been saved";
-	check = true;
 }
 
 
@@ -314,12 +303,8 @@ if(document.getElementById("Custom").checked) {
 	C1 == "" || C2 == "" || Cminus2 == "" || Cminus1 == "" || Dplus2 == "" || Dplus1 == "" || 
 	D1 == "" || D2 == "" || Dminus2 == "" || Dminus1 == "" || Fgrade == "") {
 		alert("you have values that are empty");
-		check = false;
+		return false;
 	}
-else {
-check = true;
-}
-
 }
 
 }
@@ -339,7 +324,7 @@ function Custom(element, quantity) {
                 else if (element <= parseInt(Fgrade)) {return F * quantity}
 		else {
 		alert("There is a grade entered that is not in the range of values");
-		check = false;
+		return false;
 		}
 
 ;}
@@ -1143,6 +1128,7 @@ g8 = Basic(element8.value, quantity8.value);
 
 if(document.getElementById("Custom").checked) {
 
+
 element1 = document.getElementById("grade1");
 element2 = document.getElementById("grade2");
 element3 = document.getElementById("grade3");
@@ -1456,13 +1442,7 @@ total = g1 + g2 + g3 + g4 + g5 + g6 + g7 + g8;
 
 answer = total / credits;
 rounded = Math.round(answer * 100) / 100;
-if (check == true) {
-	document.getElementById("result").innerHTML = rounded;
-}
-else {
-	document.getElementById("result").innerHTML = "You need to fix the custom grading scale values for the grades to calculate properly";
-}
-
+document.getElementById("result").innerHTML = rounded;
 }
 
 $(document).ready(function () {
